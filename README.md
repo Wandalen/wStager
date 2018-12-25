@@ -8,3 +8,4 @@ Class to organize states of an object.
 npm install
 node sample/Sample.s
 ```
+
