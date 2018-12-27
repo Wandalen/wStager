@@ -1,8 +1,9 @@
 
-let Stager = require( '..' );
+let _ = require( '..' );
 
 /* */
 
+debugger;
 let stager = new _.Stager
 ({
   object : {},
