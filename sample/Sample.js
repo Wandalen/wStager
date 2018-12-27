@@ -1,5 +1,5 @@
 
-let Stager = require( 'wstager' );
+let Stager = require( '..' );
 
 /* */
 
