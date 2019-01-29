@@ -76,12 +76,6 @@ function stage( stageName, number )
     _.assert( object[ self.stageNames[ s ] ] > 0, () => 'For ' + object.nickName + ' states preceding ' + _.strQuote( stageName ) + ' should be greater than zero, but ' + _.strQuote( self.stageNames[ s ] ) + ' is not' );
   }
 
-  // if( Config.debug )
-  // for( let s = stage ; s < l ; s++ )
-  // {
-  //   _.assert( !consequence.resourcesCount(), () => 'Consequences following ' + _.strQuote( self.consequenceNames[ s ] ) + ' should have no resource' );
-  // }
-
   if( Config.debug )
   for( let s = stage+1 ; s < l ; s++ )
   {
@@ -95,18 +89,16 @@ function stage( stageName, number )
   _.assert( object[ stageName ]+1 === number, () => 'Stage ' + _.strQuote( stageName ) + ' has value ' + object[ stageName ] + ' so the next value should be ' + ( object[ stageName ]+1 ) + ' attempt to set ' + number );
   _.assert( !consequence.resourcesCount(), () => 'Consequences ' + _.strQuote( self.consequenceNames[ stage ] ) + ' of the current stage ' + _.strQuote( stageName ) + ' should have no resource' );
 
-  // if( isFinal )
-  // if( stageName === 'willFilesOpened' )
-  // debugger;
-
   if( isFinal )
   consequence.takeSoon( null );
-  // _.timeOut( 1, () => consequence.take( null ) );
 
   object[ stageName ] = number;
 
   if( self.verbosity )
   console.log( ' s', object.nickName, stageName, number );
+
+  // if( stageName === 'resourcesFormed' )
+  // console.log( ' s', object.nickName, stageName, number );
 
   return isFinal;
 }
@@ -203,6 +195,6 @@ _.classDeclare
 _.Copyable.mixin( Self );
 _[ Self.shortName ] = Self;
 if( typeof module !== 'undefined' && module !== null )
-module[ 'exports' ] = /**/_global_.wTools;
+module[ 'exports' ] = _global_.wTools;
 
 })();
