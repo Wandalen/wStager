@@ -51,8 +51,8 @@ function init( o )
   _.assert( _.arrayIs( self.finals ) );
   _.assert( self.stageNames.length === self.consequenceNames.length );
   _.assert( self.stageNames.length === self.finals.length );
-  _.assert( _.strsAre( self.stageNames ) );
-  _.assert( _.strsAre( self.consequenceNames ) );
+  _.assert( _.strsAreAll( self.stageNames ) );
+  _.assert( _.strsAreAll( self.consequenceNames ) );
   _.assert( _.numbersAre( self.finals ) );
   _.assert( _.objectIs( self.object ) );
 
