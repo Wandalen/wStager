@@ -99,6 +99,7 @@ function stage( stageName, number )
 
   // if( isFinal )
   // consequence.takeSoon( null );
+
   if( isFinal )
   consequence.take( null );
 
