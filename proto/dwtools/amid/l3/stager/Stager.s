@@ -61,33 +61,33 @@ function init( o )
 
 //
 
-function stage( stageName, number )
+function stageState( stageName, number )
 {
   let stager = this;
   let object = stager.object;
+  let stageIndex = stager.stageIndexOf( stageName );
+
+  if( arguments.length === 1 )
+  return object[ stager.stageNames[ stageIndex ] ];
+
   let l = stager.stageNames.length;
-  let stage = stager.stageNames.indexOf( stageName );
-  let consequence = object[ stager.consequenceNames[ stage ] ];
-  let isFinal = number === stager.finals[ stage ];
+  let consequence = object[ stager.consequenceNames[ stageIndex ] ];
+  let isFinal = number === stager.finals[ stageIndex ];
 
   if( Config.debug )
-  for( let s = 0 ; s < stage ; s++ )
-  {
-    _.assert( object[ stager.stageNames[ s ] ] > 0, () => 'For ' + object.nickName + ' states preceding ' + _.strQuote( stageName ) + ' should be greater than zero, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is not' );
-  }
+  for( let s = 0 ; s < stageIndex ; s++ )
+  _.assert( object[ stager.stageNames[ s ] ] > 0, () => 'For ' + object.nickName + ' states preceding ' + _.strQuote( stageName ) + ' should be greater than zero, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is not' );
 
   if( Config.debug )
-  for( let s = stage+1 ; s < l ; s++ )
-  {
-    _.assert( object[ stager.stageNames[ s ] ] <= 1, () => 'States following ' + _.strQuote( stageName ) + ' should be zero or one, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is ' + object[ stager.stageNames[ s ] ] );
-  }
+  for( let s = stageIndex+1 ; s < l ; s++ )
+  _.assert( object[ stager.stageNames[ s ] ] <= 1, () => 'States following ' + _.strQuote( stageName ) + ' should be zero or one, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is ' + object[ stager.stageNames[ s ] ] );
 
   _.assert( arguments.length === 2 );
   _.assert( _.consequenceIs( consequence ) );
-  _.assert( stage >= 0, () => 'Unknown stage ' + _.strQuote( stageName ) );
-  _.assert( _.numberIs( number ) && number <= stager.finals[ stage ], () => 'Stage ' + _.strQuote( stageName ) + ' should be in range ' + _.rangeToStr([ 0, stager.finals[ stage ] ]) );
+  _.assert( stageIndex >= 0, () => 'Unknown stage ' + _.strQuote( stageName ) );
+  _.assert( _.numberIs( number ) && number <= stager.finals[ stageIndex ], () => 'Stage ' + _.strQuote( stageName ) + ' should be in range ' + _.rangeToStr([ 0, stager.finals[ stageIndex ] ]) );
   _.assert( object[ stageName ]+1 === number, () => 'Stage ' + _.strQuote( stageName ) + ' has value ' + object[ stageName ] + ' so the next value should be ' + ( object[ stageName ]+1 ) + ' attempt to set ' + number );
-  _.assert( !consequence.resourcesCount(), () => 'Consequences ' + _.strQuote( stager.consequenceNames[ stage ] ) + ' of the current stage ' + _.strQuote( stageName ) + ' should have no resource' );
+  _.assert( !consequence.resourcesCount(), () => 'Consequences ' + _.strQuote( stager.consequenceNames[ stageIndex ] ) + ' of the current stage ' + _.strQuote( stageName ) + ' should have no resource' );
 
   object[ stageName ] = number;
 
@@ -115,20 +115,83 @@ function stageError( stageName, error )
   let stage = stager.stageNames.indexOf( stageName );
   let consequence = object[ stager.consequenceNames[ stage ] ];
 
-  // debugger;
+  error = _.err( error );
 
   if( stager.verbosity  )
   console.log( ' !s', object.nickName, stageName, 'failed' );
   consequence.error( error );
 
-/*
-  module.stager.stageError( submodulesFormed );
-  if( will.verbosity && will.verboseStaging )
-  console.log( ' !s', module.nickName, 'submodulesFormed', 'failed' );
-  module.submodulesFormReady.error( err );
-*/
-
   return error;
+}
+
+//
+
+function stageConsequence( stageName, offset )
+{
+  let stager = this;
+  let object = stager.object;
+  let stageIndex = stager.stageIndexOf( stageName, offset );
+  let consequence = object[ stager.consequenceNames[ stageIndex ] ];
+
+  _.assert( _.consequenceIs( consequence ) );
+
+  return consequence;
+}
+
+//
+
+function stageIndexOf( stageName, offset )
+{
+  let stager = this;
+  let stageIndex = stageName;
+  offset = offset || 0;
+
+  if( _.strIs( stageIndex ) )
+  stageIndex = stager.stageNames.indexOf( stageIndex )
+
+  _.assert( _.numberIs( stageIndex ) );
+  _.assert( arguments.length === 1 || arguments.length === 2 );
+
+  stageIndex += offset;
+
+  _.assert
+  (
+    0 <= stageIndex && stageIndex < stager.stageNames.length,
+    () => 'Stage ' + stageName + ' with offset ' + offset + ' does not exist'
+  );
+
+  return stageIndex;
+}
+
+//
+
+function stageSkip( stageName )
+{
+  let stager = this;
+  let object = stager.object;
+  let stageIndex = stager.stageIndexOf( stageName, offset );
+  let consequence = object[ stager.consequenceNames[ stageIndex ] ];
+
+  _.assert( arguments.length === 1 );
+
+  if( stager.stageState( stageIndex ) > 0 )
+  return stager.stageConsequence( stageIndex );
+  stager.stageState( stageIndex, 1 );
+
+  let result = stager.stageConsequence( stageIndex, -1 ).split()
+  .finally( ( err, arg ) =>
+  {
+    stager.stageState( stageIndex, 2 );
+
+    if( err )
+    throw stager.stageError( stageIndex, err );
+    else
+    stager.stageState( stageIndex, 3 );
+
+    return arg;
+  });
+
+  return result;
 }
 
 //
@@ -198,8 +261,13 @@ let Proto =
   // inter
 
   init,
-  stage,
+
+  stageState,
   stageError,
+  stageConsequence,
+  stageIndexOf,
+  stageSkip,
+
   infoExport,
 
   // relation
