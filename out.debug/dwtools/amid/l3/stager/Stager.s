@@ -89,9 +89,6 @@ function stage( stageName, number )
   _.assert( object[ stageName ]+1 === number, () => 'Stage ' + _.strQuote( stageName ) + ' has value ' + object[ stageName ] + ' so the next value should be ' + ( object[ stageName ]+1 ) + ' attempt to set ' + number );
   _.assert( !consequence.resourcesCount(), () => 'Consequences ' + _.strQuote( stager.consequenceNames[ stage ] ) + ' of the current stage ' + _.strQuote( stageName ) + ' should have no resource' );
 
-  if( isFinal )
-  consequence.takeSoon( null );
-
   object[ stageName ] = number;
 
   if( stager.verbosity )
@@ -99,6 +96,11 @@ function stage( stageName, number )
 
   // if( stageName === 'resourcesFormed' )
   // console.log( ' s', object.nickName, stageName, number );
+
+  // if( isFinal )
+  // consequence.takeSoon( null );
+  if( isFinal )
+  consequence.take( null );
 
   return isFinal;
 }
