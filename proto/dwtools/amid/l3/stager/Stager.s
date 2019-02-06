@@ -66,6 +66,7 @@ function stageState( stageName, number )
   let stager = this;
   let object = stager.object;
   let stageIndex = stager.stageIndexOf( stageName );
+  stageName = stager.stageNameOf( stageIndex );
 
   if( arguments.length === 1 )
   return object[ stager.stageNames[ stageIndex ] ];
@@ -112,8 +113,8 @@ function stageError( stageName, error )
 {
   let stager = this;
   let object = stager.object;
-  let stage = stager.stageNames.indexOf( stageName );
-  let consequence = object[ stager.consequenceNames[ stage ] ];
+  let stageIndex = stager.stageIndexOf( stageName );
+  let consequence = object[ stager.consequenceNames[ stageIndex ] ];
 
   error = _.err( error );
 
@@ -165,12 +166,29 @@ function stageIndexOf( stageName, offset )
 
 //
 
+function stageNameOf( stageIndex )
+{
+  let stager = this;
+  let stagaName = stageIndex;
+
+  if( _.numberIs( stagaName ) )
+  stagaName = stager.stageNames[ stagaName ];
+
+  _.assert( _.strIs( stagaName ), () => 'Cant find stage name for stage index ' + stageIndex );
+  _.assert( arguments.length === 1 );
+
+  return stagaName;
+}
+
+//
+
 function stageSkip( stageName )
 {
   let stager = this;
   let object = stager.object;
-  let stageIndex = stager.stageIndexOf( stageName, offset );
+  let stageIndex = stager.stageIndexOf( stageName );
   let consequence = object[ stager.consequenceNames[ stageIndex ] ];
+  let final = stager.finals[ stageIndex ];
 
   _.assert( arguments.length === 1 );
 
@@ -181,13 +199,11 @@ function stageSkip( stageName )
   let result = stager.stageConsequence( stageIndex, -1 ).split()
   .finally( ( err, arg ) =>
   {
-    stager.stageState( stageIndex, 2 );
-
     if( err )
     throw stager.stageError( stageIndex, err );
     else
-    stager.stageState( stageIndex, 3 );
-
+    for( let i = 2 ; i <= final ; i++ )
+    stager.stageState( stageIndex, i );
     return arg;
   });
 
@@ -266,6 +282,7 @@ let Proto =
   stageError,
   stageConsequence,
   stageIndexOf,
+  stageNameOf,
   stageSkip,
 
   infoExport,
