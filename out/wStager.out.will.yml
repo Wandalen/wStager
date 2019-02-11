@@ -2,7 +2,7 @@ format: willfile-1.0.0
 about:
   name: wStager
   description: Class to organize states of an object.
-  version: 0.3.9
+  version: 0.3.14
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -22,11 +22,11 @@ path:
   out:
     path: out
   out.debug:
-    path: ./out.debug
+    path: ./out/debug
     criterion:
       debug: 1
   out.release:
-    path: ./out.release
+    path: ./out/release
     criterion:
       debug: 0
   repository:
@@ -45,16 +45,16 @@ path:
       public: 1
   exportedFiles.proto.export:
     path:
-      - .
-      - ./dwtools
-      - ./dwtools/Tools.s
-      - ./dwtools/abase
-      - ./dwtools/amid
-      - ./dwtools/amid/l3
-      - ./dwtools/amid/l3/stager
-      - ./dwtools/amid/l3/stager/Stager.s
-      - ./dwtools/amid/l3.test
-      - ./dwtools/atop
+      - proto
+      - proto/dwtools
+      - proto/dwtools/Tools.s
+      - proto/dwtools/abase
+      - proto/dwtools/amid
+      - proto/dwtools/amid/l3
+      - proto/dwtools/amid/l3/stager
+      - proto/dwtools/amid/l3/stager/Stager.s
+      - proto/dwtools/amid/l3.test
+      - proto/dwtools/atop
     criterion:
       default: 1
       debug: 1
@@ -68,7 +68,7 @@ reflector:
   reflect.proto.:
     srcFilter:
       filePath:
-        ./proto: ./out.release
+        ./proto: ./out/release
       maskAll:
         excludeAny:
           - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
@@ -89,7 +89,7 @@ reflector:
   reflect.proto.debug:
     srcFilter:
       filePath:
-        ./proto: ./out.debug
+        ./proto: ./out/debug
       maskAll:
         excludeAny:
           - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
@@ -124,24 +124,41 @@ reflector:
       - predefined.*
   exported.proto.export:
     srcFilter:
-      filePath: ./proto
+      filePath:
+        ./proto: true
       prefixPath: .
+    criterion:
+      default: 1
+      debug: 1
+      raw: 1
+      proto: 1
+      export: 1
+      tar: 1
+      public: 1
   exportedFiles.proto.export:
     recursive: 0
     srcFilter:
       filePath:
         .: true
-        ./dwtools: true
-        ./dwtools/Tools.s: true
-        ./dwtools/abase: true
-        ./dwtools/amid: true
-        ./dwtools/amid/l3: true
-        ./dwtools/amid/l3/stager: true
-        ./dwtools/amid/l3/stager/Stager.s: true
-        ./dwtools/amid/l3.test: true
-        ./dwtools/atop: true
+        dwtools: true
+        dwtools/Tools.s: true
+        dwtools/abase: true
+        dwtools/amid: true
+        dwtools/amid/l3: true
+        dwtools/amid/l3/stager: true
+        dwtools/amid/l3/stager/Stager.s: true
+        dwtools/amid/l3.test: true
+        dwtools/atop: true
       basePath: .
       prefixPath: proto
+    criterion:
+      default: 1
+      debug: 1
+      raw: 1
+      proto: 1
+      export: 1
+      tar: 1
+      public: 1
 step:
   clean.out.:
     criterion:
@@ -262,7 +279,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.3.9
+    version: 0.3.14
     criterion:
       default: 1
       debug: 1
