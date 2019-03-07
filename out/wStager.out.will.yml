@@ -2,7 +2,7 @@ format: willfile-1.0.0
 about:
   name: wStager
   description: Class to organize states of an object.
-  version: 0.3.14
+  version: 0.3.15
   enabled: 1
   interpreters:
     - nodejs >= 6.0.0
@@ -15,10 +15,10 @@ execution:
     test: wtest proto
     docgen: wdocgen staging
 path:
-  proto:
-    path: ./proto
   in:
-    path: .
+    path: ..
+  temp:
+    path: out
   out:
     path: out
   out.debug:
@@ -29,6 +29,8 @@ path:
     path: ./out/release
     criterion:
       debug: 0
+  proto:
+    path: ./proto
   repository:
     path: 'git+https://github.com/Wandalen/wStager.git'
   bugs:
@@ -66,9 +68,9 @@ path:
 submodule: {}
 reflector:
   reflect.proto.:
-    srcFilter:
+    src:
       filePath:
-        ./proto: ./out/release
+        .: .
       maskAll:
         excludeAny:
           - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
@@ -81,15 +83,17 @@ reflector:
           - !<tag:yaml.org,2002:js/regexp> /\.debug($|\.|\/)/i
           - !<tag:yaml.org,2002:js/regexp> /\.test($|\.|\/)/i
           - !<tag:yaml.org,2002:js/regexp> /\.experiment($|\.|\/)/i
-      prefixPath: .
+      prefixPath: proto
+    dst:
+      prefixPath: out/release
     criterion:
       debug: 0
     inherit:
       - predefined.*
   reflect.proto.debug:
-    srcFilter:
+    src:
       filePath:
-        ./proto: ./out/debug
+        .: .
       maskAll:
         excludeAny:
           - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
@@ -100,13 +104,15 @@ reflector:
           - !<tag:yaml.org,2002:js/regexp> /\.DS_Store$/
           - !<tag:yaml.org,2002:js/regexp> /(^|\/)-/
           - !<tag:yaml.org,2002:js/regexp> /\.release($|\.|\/)/i
-      prefixPath: .
+      prefixPath: proto
+    dst:
+      prefixPath: out/debug
     criterion:
       debug: 1
     inherit:
       - predefined.*
   reflect.submodules:
-    srcFilter:
+    src:
       maskAll:
         excludeAny:
           - !<tag:yaml.org,2002:js/regexp> /(\W|^)node_modules(\W|$)/
@@ -117,16 +123,15 @@ reflector:
           - !<tag:yaml.org,2002:js/regexp> /\.DS_Store$/
           - !<tag:yaml.org,2002:js/regexp> /(^|\/)-/
           - !<tag:yaml.org,2002:js/regexp> /\.release($|\.|\/)/i
-      prefixPath: .
     criterion:
       debug: 1
     inherit:
       - predefined.*
   exported.proto.export:
-    srcFilter:
+    src:
       filePath:
-        ./proto: true
-      prefixPath: .
+        .: true
+      prefixPath: proto
     criterion:
       default: 1
       debug: 1
@@ -137,7 +142,7 @@ reflector:
       public: 1
   exportedFiles.proto.export:
     recursive: 0
-    srcFilter:
+    src:
       filePath:
         .: true
         dwtools: true
@@ -279,7 +284,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.3.14
+    version: 0.3.15
     criterion:
       default: 1
       debug: 1
