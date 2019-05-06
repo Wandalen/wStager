@@ -75,9 +75,9 @@ function stageState( stageName, number )
   let consequence = object[ stager.consequenceNames[ stageIndex ] ];
   let isFinal = number === stager.finals[ stageIndex ];
 
-  if( Config.debug )
-  for( let s = 0 ; s < stageIndex ; s++ )
-  _.assert( object[ stager.stageNames[ s ] ] > 0, () => 'For ' + object.nickName + ' states preceding ' + _.strQuote( stageName ) + ' should be greater than zero, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is not' );
+  // if( Config.debug )
+  // for( let s = 0 ; s < stageIndex ; s++ )
+  // _.assert( object[ stager.stageNames[ s ] ] > 0, () => 'For ' + object.nickName + ' states preceding ' + _.strQuote( stageName ) + ' should be greater than zero, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is not' );
 
   if( Config.debug )
   for( let s = stageIndex+1 ; s < l ; s++ )
@@ -95,16 +95,67 @@ function stageState( stageName, number )
   if( stager.verbosity )
   console.log( ' s', object.nickName, stageName, number );
 
-  // if( stageName === 'resourcesFormed' )
-  // console.log( ' s', object.nickName, stageName, number );
-
-  // if( isFinal )
-  // consequence.takeSoon( null );
-
   if( isFinal )
   consequence.take( null );
 
   return isFinal;
+}
+
+//
+
+function stageCancel( stageName )
+{
+  let stager = this;
+  let object = stager.object;
+  let stageIndex = stager.stageIndexOf( stageName );
+  stageName = stager.stageNameOf( stageIndex );
+
+  _.assert( arguments.length === 1 );
+
+  let l = stager.stageNames.length;
+  let consequence = object[ stager.consequenceNames[ stageIndex ] ];
+  let finalConsequence = object[ stager.consequenceNames[ stager.consequenceNames.length - 1 ] ];
+
+  if( consequence.resourcesCount() )
+  {
+    _.assert( stageIndex === stager.consequenceNames.length-2, 'Implemented only for penultimate stage' );
+    consequence.cancel();
+    return finalConsequence.splitGive();
+    // let cons = [];
+    // for( let s = stageIndex+1 ; s < l ; s++ )
+    // {
+    //   cons.push( object[ stager.consequenceNames[ s ] ] );
+    // }
+    // debugger;
+    // return _.Consequence.AndTake( cons );
+  }
+
+  return new _.Consequence().take( null );
+
+  // // if( Config.debug )
+  // // for( let s = 0 ; s < stageIndex ; s++ )
+  // // _.assert( object[ stager.stageNames[ s ] ] > 0, () => 'For ' + object.nickName + ' states preceding ' + _.strQuote( stageName ) + ' should be greater than zero, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is not' );
+  //
+  // if( Config.debug )
+  // for( let s = stageIndex+1 ; s < l ; s++ )
+  // _.assert( object[ stager.stageNames[ s ] ] <= 1, () => 'States following ' + _.strQuote( stageName ) + ' should be zero or one, but ' + _.strQuote( stager.stageNames[ s ] ) + ' is ' + object[ stager.stageNames[ s ] ] );
+  //
+  // _.assert( arguments.length === 2 );
+  // _.assert( _.consequenceIs( consequence ) );
+  // _.assert( stageIndex >= 0, () => 'Unknown stage ' + _.strQuote( stageName ) );
+  // _.assert( _.numberIs( number ) && number <= stager.finals[ stageIndex ], () => 'Stage ' + _.strQuote( stageName ) + ' should be in range ' + _.rangeToStr([ 0, stager.finals[ stageIndex ] ]) );
+  // _.assert( object[ stageName ]+1 === number, () => 'Stage ' + _.strQuote( stageName ) + ' has value ' + object[ stageName ] + ' so the next value should be ' + ( object[ stageName ]+1 ) + ' attempt to set ' + number );
+  // _.assert( !consequence.resourcesCount(), () => 'Consequences ' + _.strQuote( stager.consequenceNames[ stageIndex ] ) + ' of the current stage ' + _.strQuote( stageName ) + ' should have no resource' );
+  //
+  // object[ stageName ] = number;
+  //
+  // if( stager.verbosity )
+  // console.log( ' s', object.nickName, stageName, number );
+  //
+  // if( isFinal )
+  // consequence.take( null );
+  //
+  // return isFinal;
 }
 
 //
@@ -194,16 +245,19 @@ function stageSkip( stageName )
 
   if( stager.stageState( stageIndex ) > 0 )
   return stager.stageConsequence( stageIndex );
-  stager.stageState( stageIndex, 1 );
+
+  // stager.stageState( stageIndex, 1 ); // yyy
 
   let result = stager.stageConsequence( stageIndex, -1 ).split()
   .finally( ( err, arg ) =>
   {
     if( err )
     throw stager.stageError( stageIndex, err );
-    else
-    for( let i = 2 ; i <= final ; i++ )
-    stager.stageState( stageIndex, i );
+    _.assert( !consequence.resourcesCount() );
+    consequence.take( null );
+    // else // yyy
+    // for( let i = 2 ; i <= final ; i++ )
+    // stager.stageState( stageIndex, i );
     return arg;
   });
 
@@ -279,6 +333,7 @@ let Proto =
   init,
 
   stageState,
+  stageCancel,
   stageError,
   stageConsequence,
   stageIndexOf,
