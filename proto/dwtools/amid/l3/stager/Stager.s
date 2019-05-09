@@ -21,6 +21,12 @@ if( typeof module !== 'undefined' )
 
 //
 
+/**
+ * @classdesc Class to organize states of an object.
+ * @class wStager
+ * @memberof module:Tools/mid/Stager
+*/
+
 let _ = wTools;
 let Parent = null;
 let Self = function wStager( o )
@@ -60,6 +66,14 @@ function init( o )
 }
 
 //
+
+/**
+ * @descriptionNeeded
+ * @param {String} stageName Name of stage.
+ * @param {Number} number Number of stage.
+ * @funciton stageState
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
 
 function stageState( stageName, number )
 {
@@ -102,6 +116,13 @@ function stageState( stageName, number )
 }
 
 //
+
+/**
+ * @descriptionNeeded
+ * @param {String} stageName Name of stage.
+ * @funciton stageCancel
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
 
 function stageCancel( stageName )
 {
@@ -160,6 +181,14 @@ function stageCancel( stageName )
 
 //
 
+/**
+ * @descriptionNeeded
+ * @param {String} stageName Name of stage.
+ * @param {String} error Error message.
+ * @funciton stageError
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
+
 function stageError( stageName, error )
 {
   let stager = this;
@@ -178,6 +207,14 @@ function stageError( stageName, error )
 
 //
 
+/**
+ * @summary Returns wConsequence instance associataed with the stage. Takes name of stage `stageName` and `offset`.
+ * @param {String} stageName Name of stage.
+ * @param {Number} offset Offset of stage.
+ * @funciton stageConsequence
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
+
 function stageConsequence( stageName, offset )
 {
   let stager = this;
@@ -191,6 +228,14 @@ function stageConsequence( stageName, offset )
 }
 
 //
+
+/**
+ * @summary Returns stage index. Takes stage name `stageName` and stage `offset`.
+ * @param {String} stageName Name of stage.
+ * @param {Number} offset Offset of stage.
+ * @funciton stageIndexOf
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
 
 function stageIndexOf( stageName, offset )
 {
@@ -217,6 +262,13 @@ function stageIndexOf( stageName, offset )
 
 //
 
+/**
+ * @summary Return name of stage for index `stageIndex`.
+ * @param {Number} stageIndex Index of stage.
+ * @funciton stageNameOf
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
+
 function stageNameOf( stageIndex )
 {
   let stager = this;
@@ -232,6 +284,13 @@ function stageNameOf( stageIndex )
 }
 
 //
+
+/**
+ * @summary Skips stage with name `stageName`.
+ * @param {String} stageName Name of stage.
+ * @funciton stageSkip
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
 
 function stageSkip( stageName )
 {
@@ -265,6 +324,12 @@ function stageSkip( stageName )
 }
 
 //
+
+/**
+ * @summary Returns info about stages.
+ * @funciton infoExport
+ * @memberof module:Tools/mid/Stager.wStager#
+*/
 
 function infoExport()
 {
