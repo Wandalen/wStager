@@ -3,7 +3,8 @@
 'use strict';
 
 /**
-  @module Tools/mid/Stager - Class to organize states of an object.
+ * Class to organize states of an object.
+  @module Tools/mid/Stager
 */
 
 /**
