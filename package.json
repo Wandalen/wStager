@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "wTools": "",
-    "wCopyable": ""
+    "wCopyable": "",
+    "wBitmask": ""
   },
   "devDependencies": {
     "wTesting": ""
