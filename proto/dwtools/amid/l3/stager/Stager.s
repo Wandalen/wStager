@@ -162,6 +162,7 @@ function stageRerun( stageName )
       let state = stager.stageState( s );
       state.ended = false;
       state.errored = false;
+      state.performed = false;
       stager.stageState( s, state );
     }
 
@@ -345,7 +346,7 @@ function infoExport()
     let state = stager.stageState( stageIndex );
     let consequence = stager.object[ stager.consequenceNames[ stageIndex ] ];
     let failStr = consequence.errorsCount() ? ( ' - ' + 'fail' ) : '';
-    let conStr = consequence.infoExport({ detailing : 1 });
+    let conStr = consequence.infoExport({ verbosity : 1 });
     let stateStr = '';
     for( let s in state )
     stateStr += s[ 0 ] + s[ 1 ] + ':' + state[ s ] + ' ';
@@ -588,6 +589,7 @@ function tick()
 
       if( err )
       {
+        debugger;
         let state2 = stager.stageState( stageName );
         state2.performed = ( !state.skipping || state.performed ) && !err;
         state2.errored = !!err;
