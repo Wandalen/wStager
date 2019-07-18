@@ -96,7 +96,7 @@ function init( o )
     defaultFieldsArray : stager.stateMaskFields
   });
 
-  Object.freeze( stager );
+  // Object.freeze( stager );
 }
 
 //
@@ -380,7 +380,7 @@ function stageState( stage, state )
   }
   else
   {
-    _.assert( !Object.isFrozen( stager.object ) );
+    _.assert( !Object.isFrozen( stager.object ), () => 'Object is frozen, cant modify it : ' + _.toStrShort( stager.object ) );
     stager.object[ stager.stageNames[ stageIndex ] ] = stager.stateFromMap( state );
   }
 
@@ -455,6 +455,13 @@ function tick()
   if( Object.isFrozen( stager.object ) )
   return stager.object[ stager.consequenceNames[ stager.consequenceNames.length - 1 ] ];
 
+  stager.running += 1;
+  if( stager.running === 1 )
+  {
+    if( stager.verbosity )
+    logger.log( 'stager.running begin' );
+  }
+
   for( let stageIndex = 0 ; stageIndex < stager.stageNames.length ; stageIndex++ )
   {
     let stageName = stager.stageNames[ stageIndex ];
@@ -495,12 +502,21 @@ function tick()
 
   }
 
+  stager.running -= 1;
+  if( stager.running === 0 )
+  {
+    if( stager.verbosity )
+    logger.log( 'stager.running end' );
+  }
+
   return stager.object[ stager.consequenceNames[ stager.consequenceNames.length - 1 ] ];
 
   /* */
 
   function routineRun( onBegin, onPerform, onEnd, stageName, state, prevConsequence, consequence )
   {
+
+    stager.running += 1;
 
     if( stager.verbosity )
     logger.log( 'stage.begin', stageName, stager.object.absoluteName );
@@ -596,6 +612,7 @@ function tick()
         stager.stageState( stageName, state2 );
       }
 
+      stager.running -= 1;
       stager.consequence.take( arg || null );
       stager.tick();
 
@@ -637,6 +654,7 @@ let Associates =
 let Restricts =
 {
   stateMask : null,
+  running : 0,
 }
 
 let Statics =
