@@ -42,7 +42,7 @@ let _ = wTools;
 let Parent = null;
 let Self = function wStager( o )
 {
-  return _.instanceConstructor( Self, this, arguments );
+  return _.workpiece.construct( Self, this, arguments );
 }
 
 Self.shortName = 'Stager';
@@ -57,7 +57,7 @@ function init( o )
 
   _.assert( arguments.length === 0 || arguments.length === 1 );
 
-  _.instanceInit( stager );
+  _.workpiece.initFields( stager );
   Object.preventExtensions( stager );
 
   stager.consequence.take( null );
