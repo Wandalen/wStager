@@ -1,18 +1,17 @@
-
 {
   "name": "wstager",
-  "version": "0.3.0",
-  "description": "___",
+  "version": "0.3.32",
+  "description": "Class to organize states of an object.",
   "author": "Kostiantyn Wandalen <wanalen@willbe.so>",
   "license": "MIT",
-  "main": "proto/dwtools/amid/___",
+  "main": "proto/dwtools/amid/l3/stager/Stager.s",
   "files": [
-    "proto/dwtools/amid",
+    "proto/dwtools/amid/l3",
     "proto/dwtools/Tools.s",
     "production"
   ],
   "scripts": {
-    "test": "wtest proto",
+    "test": "wtest .run proto/**",
     "docgen": "wdocgen proto"
   },
   "repository": {
@@ -23,7 +22,9 @@
     "url": "https://github.com/Wandalen/wStager/issues"
   },
   "dependencies": {
-    "wTools": ""
+    "wTools": "",
+    "wCopyable": "",
+    "wBitmask": ""
   },
   "devDependencies": {
     "wTesting": ""
