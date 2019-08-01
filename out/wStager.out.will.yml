@@ -3,7 +3,7 @@ about:
   name: wStager
   description: Class to organize states of an object.
   enabled: 1
-  version: 0.3.15
+  version: 0.3.31
   interpreters: &ref_0
     - nodejs >= 6.0.0
     - chrome >= 60.0.0
@@ -52,9 +52,9 @@ path:
   proto:
     path: ../proto
   repository:
-    path: 'git+https:///github.com/Wandalen/wStager.git'
+    path: 'git+https://../github.com/Wandalen/wStager.git'
   bugs:
-    path: 'https:///github.com/Wandalen/wStager/issues'
+    path: 'https://../github.com/Wandalen/wStager/issues'
   exported.dir.proto.export:
     path: ../proto
     criterion:
@@ -271,7 +271,7 @@ build:
       - 'step::export.proto'
 exported:
   proto.export:
-    version: 0.3.15
+    version: 0.3.31
     criterion:
       default: 1
       debug: 1
@@ -290,7 +290,7 @@ module:
       name: wStager
       description: Class to organize states of an object.
       enabled: 1
-      version: 0.3.15
+      version: 0.3.31
       interpreters: *ref_0
       keywords: *ref_1
     path:
@@ -337,9 +337,9 @@ module:
       proto:
         path: ./proto
       repository:
-        path: 'git+https:///github.com/Wandalen/wStager.git'
+        path: 'git+https://github.com/Wandalen/wStager.git'
       bugs:
-        path: 'https:///github.com/Wandalen/wStager/issues'
+        path: 'https://github.com/Wandalen/wStager/issues'
       exported.dir.proto.export:
         path: ./proto
         criterion:
@@ -556,7 +556,7 @@ module:
           - 'step::export.proto'
     exported:
       proto.export:
-        version: 0.3.15
+        version: 0.3.31
         criterion:
           default: 1
           debug: 1
