@@ -3,21 +3,21 @@ submodule :
 
   wTools :
     path : npm:///wTools
-    enabled : 0
+    enabled : 0 # submodule
   wCopyable :
     path : npm:///wCopyable
-    enabled : 0
+    enabled : 0 # submodule
   wBitmask :
     path : npm:///wBitmask
-    enabled : 0
+    enabled : 0 # submodule
   wstager :
     path : hd://.
-    enabled : 0
+    enabled : 0 # submodule
     criterion :
       development : 1
   wTesting :
     path : npm:///wTesting
-    enabled : 0
+    enabled : 0 # submodule
     criterion :
       development : 1
 
