@@ -17,6 +17,7 @@ if( typeof module !== 'undefined' )
 
   _.include( 'wCopyable' );
   _.include( 'wBitmask' );
+  _.include( 'wConsequence' );
 
 }
 
@@ -72,9 +73,7 @@ function init( o )
   _.assert( _.arrayIs( stager.stageNames ) );
   _.assert( _.arrayIs( stager.consequenceNames ) );
   _.assert( stager.stageNames.length === stager.consequenceNames.length );
-
   _.assert( stager.stageNames.length === stager.onPerform.length );
-
   _.assert( _.strsAreAll( stager.stageNames ) );
   _.assert( _.strsAreAll( stager.consequenceNames ) );
   _.assert( _.objectIs( stager.object ) );
@@ -84,8 +83,8 @@ function init( o )
   [
     { skipping : false },
     { pausing : false },
-    { begun : false },
-    { ended : false },
+    // { begun : false },
+    // { ended : false },
     { errored : false },
     { performed : false },
   ];
@@ -95,6 +94,9 @@ function init( o )
   ({
     defaultFieldsArray : stager.stateMaskFields
   });
+
+  stager.currentStage = stager.stageNames[ 0 ];
+  stager.currentPhase = 0;
 
   // Object.freeze( stager );
 }
@@ -136,11 +138,11 @@ function stageCancel( stageName )
 /**
  * @descriptionNeeded
  * @param {String} stageName Name of stage.
- * @funciton stageRerun
+ * @funciton stageReset
  * @memberof module:Tools/mid/Stager.wStager#
 */
 
-function stageRerun( stageName )
+function stageReset( stageName, allAfter )
 {
   let stager = this;
   let object = stager.object;
@@ -148,7 +150,7 @@ function stageRerun( stageName )
   let consequence = object[ stager.consequenceNames[ stageIndex ] ];
   stageName = stager.stageNameOf( stageIndex );
 
-  _.assert( arguments.length === 1 );
+  _.assert( arguments.length === 2 );
 
   stager.consequence.then( ( arg ) =>
   {
@@ -157,26 +159,36 @@ function stageRerun( stageName )
     {
       let consequence = stager.object[ stager.consequenceNames[ s ] ];
 
-      consequence.resourcesCancel();
+      consequence.resourcesCancel(); // xxx : replace
+      // if( state.ended )
+      // consequence.finallyGive( 1 );
 
       let state = stager.stageState( s );
-      state.ended = false;
-      state.errored = false;
-      state.performed = false;
-      stager.stageState( s, state );
+      if( allAfter || s === stager.stageNames.length-1 || state.errored )
+      {
+        // state.ended = false;
+        state.errored = false;
+        state.performed = false;
+        stager.stageState( s, state );
+      }
     }
 
-    consequence.resourcesCancel();
+    consequence.resourcesCancel(); // xxx : replace
+    // if( state.ended )
+    // consequence.finallyGive( 1 );
 
     let state = stager.stageState( stageIndex );
     state.skipping = false;
     state.pausing = false;
-    state.ended = false;
+    // state.ended = false;
     state.errored = false;
     state.performed = false;
     stager.stageState( stageIndex, state );
 
-    stager.tick();
+    stager.currentStage = stageName;
+    stager.currentPhase = 0;
+
+    // stager.tick();
 
     return arg;
   });
@@ -206,8 +218,8 @@ function stageError( stageName, error )
   let state2 = stager.stageState( stageName );
   state2.performed = 0;
   state2.errored = true;
-  state2.begun = false;
-  state2.ended = true;
+  // state2.begun = false;
+  // state2.ended = true;
   stager.stageState( stageName, state2 );
 
   consequence.take( error, undefined );
@@ -370,6 +382,9 @@ function stageState( stage, state )
 {
   let stager = this;
   let stageIndex = stager.stageIndexOf( stage );
+  let currenStageIndex = stager.stageIndexOf( stager.currentStage );
+  let begun = currenStageIndex > stageIndex || ( currenStageIndex == stageIndex && stager.currentPhase === 1 );
+  let ended = currenStageIndex > stageIndex || ( currenStageIndex == stageIndex && stager.currentPhase >= 2 );
 
   _.assert( arguments.length === 1 || arguments.length === 2 );
 
@@ -377,11 +392,18 @@ function stageState( stage, state )
   {
     state = stager.object[ stager.stageNames[ stageIndex ] ];
     state = stager.stateToMap( state );
+    state.begun = begun;
+    state.ended = ended;
   }
   else
   {
+    _.assert( state.begun === begun );
+    _.assert( state.ended === ended );
     _.assert( !Object.isFrozen( stager.object ), () => 'Object is frozen, cant modify it : ' + _.toStrShort( stager.object ) );
-    stager.object[ stager.stageNames[ stageIndex ] ] = stager.stateFromMap( state );
+    let state2 = _.mapExtend( null, state );
+    delete state2.begun;
+    delete state2.ended;
+    stager.object[ stager.stageNames[ stageIndex ] ] = stager.stateFromMap( state2 );
   }
 
   return state;
@@ -451,19 +473,44 @@ function isValid()
 function tick()
 {
   let stager = this;
+  let currenStageIndex = stager.stageIndexOf( stager.currentStage );
 
   if( Object.isFrozen( stager.object ) )
   return stager.object[ stager.consequenceNames[ stager.consequenceNames.length - 1 ] ];
 
+  /* if begin a stage then return */
+
+  if( stager.currentPhase === 1 )
+  {
+    _.assert( stager.running > 0 );
+    stager.object[ stager.consequenceNames[ currenStageIndex ] ];
+  }
+
   stager.running += 1;
   if( stager.running === 1 )
   {
-    if( stager.verbosity )
-    logger.log( 'stager.running begin' );
+    // if( stager.verbosity )
+    // logger.log( 'stager.running begin' );
+    // statusChange( 'running', 'begin', '' );
+    statusChange( `${stager.currentStage}.ticking`, 'begin', '' );
   }
 
-  for( let stageIndex = 0 ; stageIndex < stager.stageNames.length ; stageIndex++ )
+  debugger;
+
+  // for( let stageIndex = 0 ; stageIndex < stager.stageNames.length ; stageIndex++ )
+  for( let stageIndex = currenStageIndex ; stageIndex < stager.stageNames.length ; stageIndex++ )
   {
+
+    _.assert( stager.currentPhase === 0 || stager.currentPhase === 3 );
+
+    if( stager.currentPhase === 3 )
+    {
+      if( currenStageIndex === stager.stageNames.length - 1 )
+      stager.object[ stager.consequenceNames[ currenStageIndex ] ];
+      stager.currentStage = stager.stageNames[ currenStageIndex+1 ];
+      stager.currentPhase = 0;
+    }
+
     let stageName = stager.stageNames[ stageIndex ];
     let state = stager.stageState( stageIndex );
     let consequence = stager.object[ stager.consequenceNames[ stageIndex ] ];
@@ -472,26 +519,31 @@ function tick()
     let onEnd = stager.onEnd[ stageIndex ];
 
     _.assert( !consequence.resourcesCount() || state.ended );
+    _.assert( !state.ended );
 
     if( !state.ended )
     {
 
+      _.assert( stager.stageIndexOf( stager.currentStage ) === stageIndex );
+
       if( state.begun || state.pausing )
       {
+        end();
         return consequence;
       }
 
       if( state.errored )
       {
-        debugger; xxx
-        state.errored = false;
+        _.assert( 0, 'not tested' );
       }
 
       if( !onPerform || state.skipping || state.performed )
       onPerform = function() { return null }
 
-      state.begun = true;
-      stager.stageState( stageIndex, state );
+      _.assert( stager.currentPhase === 0 );
+      stager.currentPhase = 1;
+      // state.begun = true;
+      // stager.stageState( stageIndex, state );
 
       let prevConsequence = stager.object[ stager.consequenceNames[ stageIndex-1 ] ]
       if( !prevConsequence )
@@ -502,30 +554,53 @@ function tick()
 
   }
 
-  stager.running -= 1;
-  if( stager.running === 0 )
+  return end();
+
+  /* */
+
+  function end()
   {
-    if( stager.verbosity )
-    logger.log( 'stager.running end' );
+    stager.running -= 1;
+    if( stager.running === 0 )
+    {
+      // if( stager.verbosity )
+      // logger.log( 'stager.running end' );
+      // statusChange( stageName, 'running', 'end' );
+      statusChange( `${stager.currentStage}.ticking`, 'end', '' );
+    }
+    return stager.object[ stager.consequenceNames[ stager.consequenceNames.length - 1 ] ];
   }
 
-  return stager.object[ stager.consequenceNames[ stager.consequenceNames.length - 1 ] ];
+  /* */
+
+  function statusChange( stageName, stateName, status )
+  {
+    let info = `stage:${stageName}.${stateName} ${stager.object.absoluteName} running:${stager.running} status:${status}`;
+    if( stager.verbosity )
+    logger.log( info );
+    stager.currentStatus = info;
+
+    if( _.strHas( info, 'stage:formed.before module::sub running:1 status:' ) )
+    debugger;
+
+  }
 
   /* */
 
   function routineRun( onBegin, onPerform, onEnd, stageName, state, prevConsequence, consequence )
   {
 
-    stager.running += 1;
+    // stager.running += 1;
 
-    if( stager.verbosity )
-    logger.log( 'stage.begin', stageName, stager.object.absoluteName );
+    statusChange( stageName, 'before', '' );
+
     prevConsequence = prevConsequence.split();
 
     prevConsequence.andTake( stager.consequence );
 
     prevConsequence.then( ( arg ) =>
     {
+      statusChange( stageName, 'begin', '' );
       if( onBegin === null )
       return arg;
       try
@@ -534,8 +609,7 @@ function tick()
       }
       catch( err )
       {
-        if( stager.verbosity )
-        logger.log( 'Error on begin of stage', stageName, stager.object.absoluteName );
+        statusChange( stageName, 'begin', 'error' );
         err = _.err( 'Error on begin of stage', stageName, '\n', err );
         throw err;
       }
@@ -543,14 +617,14 @@ function tick()
 
     prevConsequence.then( ( arg ) =>
     {
+      statusChange( stageName, 'perform', '' );
       try
       {
         return onPerform.call( stager.object );
       }
       catch( err )
       {
-        if( stager.verbosity )
-        logger.log( 'Error on perform of stage', stageName, stager.object.absoluteName );
+        statusChange( stageName, 'perform', 'error' );
         err = _.err( 'Error on perform of stage', stageName, '\n', err );
         throw err;
       }
@@ -559,20 +633,28 @@ function tick()
     prevConsequence.finally( ( err, arg ) =>
     {
 
-      if( stager.verbosity )
       if( err )
-      logger.log( 'stage.error', stageName, stager.object.absoluteName );
+      {
+        statusChange( stageName, 'after1', 'error' );
+      }
       else if( state.skipping )
-      logger.log( 'stage.skip', stageName, stager.object.absoluteName );
+      {
+        statusChange( stageName, 'after1', 'skip' );
+      }
       else
-      logger.log( 'stage.end', stageName, stager.object.absoluteName );
+      {
+        statusChange( stageName, 'after1', '' );
+      }
 
       let state2 = stager.stageState( stageName );
       state2.performed = ( !state.skipping || state.performed ) && !err;
       state2.errored = !!err;
-      state2.begun = false;
-      state2.ended = true;
+      // state2.begun = false;
+      // state2.ended = true;
       stager.stageState( stageName, state2 );
+
+      _.assert( stager.currentPhase === 1 );
+      stager.currentPhase = 2;
 
       consequence.take( err, arg );
 
@@ -581,6 +663,7 @@ function tick()
 
     prevConsequence.then( ( arg ) =>
     {
+      statusChange( stageName, 'end', '' );
       if( onEnd === null )
       return arg;
       try
@@ -589,8 +672,7 @@ function tick()
       }
       catch( err )
       {
-        if( stager.verbosity )
-        logger.log( 'Error on end of stage', stageName, stager.object.absoluteName );
+        statusChange( stageName, 'end', 'error' );
         err = _.err( 'Error on end of stage', stageName, '\n', err );
         throw err;
       }
@@ -599,20 +681,25 @@ function tick()
     prevConsequence.finally( ( err, arg ) =>
     {
 
-      if( stager.verbosity )
-      if( err )
-      logger.log( 'stage.error', stageName, stager.object.absoluteName );
-
       if( err )
       {
         debugger;
+        statusChange( stageName, 'after2', 'error' );
         let state2 = stager.stageState( stageName );
-        state2.performed = ( !state.skipping || state.performed ) && !err;
-        state2.errored = !!err;
+        state2.performed = 0;
+        state2.errored = 1;
         stager.stageState( stageName, state2 );
       }
+      else
+      {
+        statusChange( stageName, 'after2', '' );
+      }
 
-      stager.running -= 1;
+      _.assert( stager.currentPhase === 2 );
+      stager.currentPhase = 3;
+      // stager.running -= 1;
+
+      end();
       stager.consequence.take( arg || null );
       stager.tick();
 
@@ -653,6 +740,9 @@ let Associates =
 
 let Restricts =
 {
+  currentStatus : null,
+  currentStage : null,
+  currentPhase : 0,
   stateMask : null,
   running : 0,
 }
@@ -682,7 +772,7 @@ let Proto =
   init,
 
   stageCancel,
-  stageRerun,
+  stageReset,
   stageError,
   stageConsequence,
   stageIndexOf,

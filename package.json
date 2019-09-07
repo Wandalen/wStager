@@ -8,7 +8,7 @@
   "files": [
     "proto/dwtools/amid/l3",
     "proto/dwtools/Tools.s",
-    "production"
+    "out"
   ],
   "scripts": {
     "test": "wtest .run proto/**",
@@ -24,7 +24,8 @@
   "dependencies": {
     "wTools": "",
     "wCopyable": "",
-    "wBitmask": ""
+    "wBitmask": "",
+    "wConsequence": ""
   },
   "devDependencies": {
     "wTesting": ""
