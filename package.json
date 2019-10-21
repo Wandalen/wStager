@@ -14,11 +14,11 @@
   }, 
   "dependencies" : 
   {
-    "wTools" : "", 
-    "wCopyable" : "", 
-    "wBitmask" : "", 
-    "wConsequence" : ""
+    "wTools" : "beta", 
+    "wCopyable" : "beta", 
+    "wBitmask" : "beta", 
+    "wConsequence" : "beta"
   }, 
-  "devDependencies" : { "wTesting" : "" }, 
+  "devDependencies" : { "wTesting" : "beta" }, 
   "keywords" : [ "wTools" ]
 }
