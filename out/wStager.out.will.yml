@@ -6,12 +6,13 @@ consistency:
     hash: 17f36e3a93e3a6e2f0928c15a880cf32
     size: 1677
   ../.im.will.yml: &ref_1
-    hash: 31a97b0e4b8d44e8df9a042369289139
-    size: 5091
+    hash: 009ed7443552e755ad3482503e5b9957
+    size: 5165
 module:
   wStager.out:
     about:
       name: wStager
+      org: noorg
       description: Class to organize states of an object.
       enabled: 1
       version: 0.4.0
@@ -57,9 +58,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wStager.git'
       origins:
@@ -69,15 +67,15 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wStager/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: .
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - ../package-lock.json
+          - ../package.json
+          - ../node_modules
       proto:
         path: ../proto
       export:
@@ -142,11 +140,13 @@ module:
         path: '{path::out.*=}/source/Index.s'
       exported.dir.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path: ../proto
       exported.files.proto.export:
         criterion:
+          generated: 1
           content: proto
           export: 1
         path:
@@ -339,6 +339,7 @@ module:
           prefixPath: ../proto
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
       exported.files.proto.export:
@@ -351,6 +352,7 @@ module:
         recursive: 0
         mandatory: 1
         criterion:
+          generated: 1
           content: proto
           export: 1
     step:
@@ -797,6 +799,7 @@ module:
   ../:
     about:
       name: wStager
+      org: noorg
       description: Class to organize states of an object.
       enabled: 1
       version: 0.4.0
@@ -835,9 +838,6 @@ module:
       download:
         criterion:
           predefined: 1
-      remote:
-        criterion:
-          predefined: 1
       repository:
         path: 'git+https:///github.com/Wandalen/wStager.git'
       origins:
@@ -847,21 +847,21 @@ module:
       bugtracker:
         path: 'https:///github.com/Wandalen/wStager/issues'
       in:
-        criterion:
-          predefined: 0
         path: .
       out:
-        criterion:
-          predefined: 0
         path: out
       temp:
-        path: 'path::out'
+        path:
+          - 'path::out'
+          - package-lock.json
+          - package.json
+          - node_modules
       proto:
-        path: ./proto
+        path: proto
       export:
         path: '{path::proto}/**'
       doc:
-        path: ./doc
+        path: doc
       out.raw.debug:
         criterion:
           debug: debug
@@ -1491,5 +1491,5 @@ module:
         hash: 17f36e3a93e3a6e2f0928c15a880cf32
         size: 1677
       ../.im.will.yml:
-        hash: 31a97b0e4b8d44e8df9a042369289139
-        size: 5091
+        hash: 009ed7443552e755ad3482503e5b9957
+        size: 5165

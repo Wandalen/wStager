@@ -39,7 +39,7 @@ Performed - the processing of the stage was performed, false if it was skipped.
  * @memberof module:Tools/mid/Stager
 */
 
-let _ = wTools;
+let _ = _global_.wTools;
 let Parent = null;
 let Self = function wStager( o )
 {
@@ -171,12 +171,12 @@ function cancel( o )
   o = _.routineOptions( cancel, arguments );
   if( o.but !== null )
   o.but = _.arrayAs( o.but );
-  _.assert( o.but === null || _.all( o.but, ( s ) => _.arrayHas( stager.stageNames, s ) ) );
+  _.assert( o.but === null || _.all( o.but, ( s ) => _.longHas( stager.stageNames, s ) ) );
 
   for( let s = stager.stageNames.length-1 ; s >= 0 ; s-- )
   {
     let stage = stager.stageNames[ s ];
-    let but = o.but && _.arrayHas( o.but, stage );
+    let but = o.but && _.longHas( o.but, stage );
     let state = stager.stageState( s );
 
     if( !but )
@@ -416,11 +416,11 @@ function stagesState( stateName, value )
 
 /**
  * @summary Returns info about stages.
- * @funciton infoExport
+ * @funciton exportInfo
  * @memberof module:Tools/mid/Stager.wStager#
 */
 
-function infoExport()
+function exportInfo()
 {
   let stager = this;
   let result = '';
@@ -431,7 +431,7 @@ function infoExport()
     let state = stager.stageState( stageIndex );
     let consequence = stager.consequences[ stageIndex ];
     let failStr = consequence.errorsCount() ? ( ' - ' + 'fail' ) : '';
-    let conStr = consequence.infoExport({ verbosity : 1 });
+    let conStr = consequence.exportInfo({ verbosity : 1 });
     let stateStr = '';
     for( let s in state )
     stateStr += s[ 0 ] + s[ 1 ] + ':' + state[ s ] + ' ';
@@ -728,7 +728,7 @@ function tick()
       catch( err2 )
       {
         statusChange( stageName, 'begin', 'error' );
-        err2 = _.err( 'Error on begin of stage', stageName, '\n', err2 );
+        err2 = _.err( err2, '\nError on begin of stage', stageName );
         if( err )
         throw err;
         throw err2;
@@ -748,7 +748,7 @@ function tick()
       catch( err )
       {
         statusChange( stageName, 'perform', 'error' );
-        err = _.err( 'Error on perform of stage', stageName, '\n', err );
+        err = _.err( err, '\nError on perform of stage', stageName );
         throw err;
       }
     });
@@ -795,7 +795,7 @@ function tick()
       catch( err )
       {
         statusChange( stageName, 'end', 'error' );
-        err = _.err( 'Error on end of stage', stageName, '\n', err );
+        err = _.err( err, '\nError on end of stage', stageName );
         throw err;
       }
     });
@@ -805,7 +805,7 @@ function tick()
 
       if( err )
       {
-        debugger;
+        // debugger;
         statusChange( stageName, 'after2', 'error' );
         let state2 = stager.stageState( stageName );
         state2.performed = 0;
@@ -924,7 +924,7 @@ let Proto =
   isValid,
   tick,
 
-  infoExport,
+  exportInfo,
 
   // relation
 
