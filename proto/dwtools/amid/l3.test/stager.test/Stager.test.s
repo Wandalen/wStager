@@ -94,7 +94,7 @@ function trivial( test )
 
   stager.tick();
 
-  return _.timeOut( 1000, end );
+  return _.time.out( 1000, end );
 
   /* - */
 
@@ -196,7 +196,7 @@ function trivial( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -601,7 +601,7 @@ function byNames( test )
 
   stager.tick();
 
-  return _.timeOut( 1000, end );
+  return _.time.out( 1000, end );
 
   /* - */
 
@@ -625,7 +625,7 @@ function byNames( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'begin2';
       test.identical( stager.currentStage, 'stage2' );
@@ -666,7 +666,7 @@ function byNames( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -707,7 +707,7 @@ function byNames( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 2 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'end2';
       test.identical( stager.currentStage, 'stage2' );
@@ -877,7 +877,7 @@ function byVals( test )
 
   stager.tick();
 
-  return _.timeOut( 1000, end );
+  return _.time.out( 1000, end );
 
   /* - */
 
@@ -901,7 +901,7 @@ function byVals( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'begin2';
       test.identical( stager.currentStage, 'stage2' );
@@ -942,7 +942,7 @@ function byVals( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -983,7 +983,7 @@ function byVals( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 2 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'end2';
       test.identical( stager.currentStage, 'stage2' );
@@ -1346,7 +1346,7 @@ function stageSkiping1( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -1370,7 +1370,7 @@ function stageSkiping1( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -1501,7 +1501,7 @@ function stageSkiping2( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -1525,7 +1525,7 @@ function stageSkiping2( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -1656,7 +1656,7 @@ function stageSkiping3( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -1680,7 +1680,7 @@ function stageSkiping3( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -1811,7 +1811,7 @@ function stageCancel1( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -1835,7 +1835,7 @@ function stageCancel1( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -2044,7 +2044,7 @@ function stageCancel2( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -2068,7 +2068,7 @@ function stageCancel2( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -2274,7 +2274,7 @@ function stageCancel3( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -2298,7 +2298,7 @@ function stageCancel3( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -2504,7 +2504,7 @@ function stageCancelBut1( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -2528,7 +2528,7 @@ function stageCancelBut1( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -2734,7 +2734,7 @@ function stageSkiping2Reset1( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -2758,7 +2758,7 @@ function stageSkiping2Reset1( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -3006,7 +3006,7 @@ function stageSkiping2Reset2( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -3030,7 +3030,7 @@ function stageSkiping2Reset2( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -3278,7 +3278,7 @@ function stageSkiping2Reset3( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -3302,7 +3302,7 @@ function stageSkiping2Reset3( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -3550,7 +3550,7 @@ function stageSkiping2Reset23( test )
 
   object.ready3.then( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -3574,7 +3574,7 @@ function stageSkiping2Reset23( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -3836,7 +3836,7 @@ function stageError2( test )
 
   object.ready3.finally( run1end );
 
-  return _.timeOut( 1000, run2end );
+  return _.time.out( 1000, run2end );
 
   /* - */
 
@@ -3860,7 +3860,7 @@ function stageError2( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'begin2';
       test.identical( stager.currentStage, 'stage2' );
@@ -3901,7 +3901,7 @@ function stageError2( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 1 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'perform2';
       test.identical( stager.currentStage, 'stage2' );
@@ -3943,7 +3943,7 @@ function stageError2( test )
     test.identical( stager.currentStage, 'stage2' );
     test.identical( stager.currentPhase, 2 );
 
-    return _.timeOut( 50, () =>
+    return _.time.out( 50, () =>
     {
       test.description = 'end2';
       test.identical( stager.currentStage, 'stage2' );
