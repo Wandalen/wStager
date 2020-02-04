@@ -588,10 +588,10 @@ function tick()
   let currenStageIndex = stager.stageIndexOf( stager.currentStage );
   let error;
 
-  // if( stager.finitedIs() )
+  // if( stager.isFinited() )
   // debugger;
   if( Object.isFrozen( stager.object ) ) // xxx yyy
-  // if( stager.finitedIs() )
+  // if( stager.isFinited() )
   return stager.consequences[ stager.consequences.length - 1 ];
 
   /* if begin a stage then return */
