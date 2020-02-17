@@ -1,4 +1,4 @@
-( function _WillInternals_test_s_( ) {
+( function _Stager_test_s_( ) {
 
 'use strict';
 
@@ -7,7 +7,7 @@
 
 if( typeof module !== 'undefined' )
 {
-  let _ = require( '../../../Tools.s' );
+  let _ = require( '../../Tools.s' );
 
   _.include( 'wTesting' );;
 
