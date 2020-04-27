@@ -1,24 +1,24 @@
 {
-  "name" : "wstager", 
-  "version" : "0.3.92", 
-  "description" : "Class to organize states of an object.", 
-  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>", 
-  "license" : "MIT", 
-  "main" : "proto/dwtools/amid/l3/stager/Stager.s", 
-  "files" : [ "proto/dwtools/amid/l3", "proto/dwtools/Tools.s", "out" ], 
-  "scripts" : { "test" : "wtest .run proto/**", "docgen" : "wdocgen proto" }, 
-  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wStager.git" }, 
-  "bugs" : 
+  "name" : "wstager",
+  "version" : "0.3.93",
+  "description" : "Class to organize states of an object.",
+  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>",
+  "license" : "MIT",
+  "main" : "proto/dwtools/amid/l3/stager/Stager.s",
+  "files" : [ "proto/dwtools/amid/l3", "proto/dwtools/Tools.s", "out" ],
+  "scripts" : { "test" : "wtest .run proto/**", "docgen" : "wdocgen proto" },
+  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wStager.git" },
+  "bugs" :
   {
     "url" : "https://github.com/Wandalen/wStager/issues"
-  }, 
-  "dependencies" : 
+  },
+  "dependencies" :
   {
-    "wTools" : "", 
-    "wCopyable" : "", 
-    "wBitmask" : "", 
+    "wTools" : "",
+    "wCopyable" : "",
+    "wBitmask" : "",
     "wConsequence" : ""
-  }, 
-  "devDependencies" : { "wTesting" : "" }, 
+  },
+  "devDependencies" : { "wTesting" : "" },
   "keywords" : [ "wTools" ]
 }
