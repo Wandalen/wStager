@@ -2,7 +2,7 @@
   "name" : "wstager",
   "version" : "0.3.99",
   "description" : "Class to organize states of an object.",
-  "author" : "Kostiantyn Wandalen <wanalen@willbe.so>",
+  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
   "main" : "proto/dwtools/amid/l3/stager/Stager.s",
   "files" : [ "proto/dwtools/amid/l3", "proto/dwtools/Tools.s", "out" ],
