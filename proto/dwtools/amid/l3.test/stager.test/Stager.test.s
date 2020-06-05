@@ -1991,9 +1991,9 @@ function stageCancel1( test )
 
     checkEnd();
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 0 );
@@ -2221,9 +2221,9 @@ function stageCancel2( test )
 
     checkEnd();
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 4 );
@@ -2451,9 +2451,9 @@ function stageCancel3( test )
 
     checkEnd();
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 4 );
@@ -2681,9 +2681,9 @@ function stageCancelBut1( test )
 
     checkEnd();
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 2 );
@@ -2910,9 +2910,9 @@ function stageSkiping2Reset1( test )
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 4 );
@@ -3182,9 +3182,9 @@ function stageSkiping2Reset2( test )
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 2 );
@@ -3454,9 +3454,9 @@ function stageSkiping2Reset3( test )
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 2 );
@@ -3727,9 +3727,9 @@ function stageSkiping2Reset23( test )
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
 
     test.description = 'were callbacks called'
     test.identical( perform1End, 2 );
@@ -4023,9 +4023,9 @@ function stageError2( test )
 
     checkEnd();
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 0 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 0 / 0' );
     test.identical( object.ready1.errorsCount(), 0 );
     test.identical( object.ready2.errorsCount(), 1 );
     test.identical( object.ready3.errorsCount(), 0 );
@@ -4051,9 +4051,9 @@ function stageError2( test )
     test.identical( end3End, 2 );
     test.identical( runEnd, 2 );
 
-    test.identical( object.ready1.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready2.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
-    test.identical( object.ready3.exportInfo({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready1.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready2.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
+    test.identical( object.ready3.exportString({ verbosity : 1 }), 'Consequence:: 1 / 0' );
     test.identical( object.ready1.errorsCount(), 0 );
     test.identical( object.ready2.errorsCount(), 1 );
     test.identical( object.ready3.errorsCount(), 1 );

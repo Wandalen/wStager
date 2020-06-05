@@ -416,11 +416,11 @@ function stagesState( stateName, value )
 
 /**
  * @summary Returns info about stages.
- * @funciton exportInfo
+ * @funciton exportString
  * @memberof module:Tools/mid/Stager.wStager#
 */
 
-function exportInfo()
+function exportString()
 {
   let stager = this;
   let result = '';
@@ -431,7 +431,7 @@ function exportInfo()
     let state = stager.stageState( stageIndex );
     let consequence = stager.consequences[ stageIndex ];
     let failStr = consequence.errorsCount() ? ( ' - ' + 'fail' ) : '';
-    let conStr = consequence.exportInfo({ verbosity : 1 });
+    let conStr = consequence.exportString({ verbosity : 1 });
     let stateStr = '';
     for( let s in state )
     stateStr += s[ 0 ] + s[ 1 ] + ':' + state[ s ] + ' ';
@@ -927,7 +927,7 @@ let Proto =
   isValid,
   tick,
 
-  exportInfo,
+  exportString,
 
   // relation
 
