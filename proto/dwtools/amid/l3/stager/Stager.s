@@ -41,7 +41,8 @@ Performed - the processing of the stage was performed, false if it was skipped.
 
 let _ = _global_.wTools;
 let Parent = null;
-let Self = function wStager( o )
+let Self = wStager;
+function wStager( o )
 {
   return _.workpiece.construct( Self, this, arguments );
 }
