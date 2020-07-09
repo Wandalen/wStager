@@ -13,7 +13,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  let _ = require( '../../../../dwtools/Tools.s' );
+  let _ = require( '../../../../wtools/Tools.s' );
 
   _.include( 'wCopyable' );
   _.include( 'wBitmask' );

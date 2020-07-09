@@ -112,7 +112,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: ../proto/dwtools/amid/l3/stager/Stager.s
+        path: ../proto/wtools/amid/l3/stager/Stager.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -122,13 +122,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/dwtools/amid/l3/stager/Stager.s'
+        path: '{path::out.*=1}/source/wtools/wtools/amid/l3/stager/Stager.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/dwtools/amid/l3/stager/Stager.s'
+        path: '{path::out.*=1}/source/wtools/wtools/amid/l3/stager/Stager.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug
@@ -155,17 +155,17 @@ module:
         path:
           - ../proto
           - ../proto/Integration.test.s
-          - ../proto/dwtools
-          - ../proto/dwtools/Tools.s
-          - ../proto/dwtools/abase
-          - ../proto/dwtools/amid
-          - ../proto/dwtools/amid/l3
-          - ../proto/dwtools/amid/l3/stager
-          - ../proto/dwtools/amid/l3/stager/Stager.s
-          - ../proto/dwtools/amid/l3.test
-          - ../proto/dwtools/amid/l3.test/stager.test
-          - ../proto/dwtools/amid/l3.test/stager.test/Stager.test.s
-          - ../proto/dwtools/atop
+          - ../proto/wtools
+          - ../proto/wtools/Tools.s
+          - ../proto/wtools/abase
+          - ../proto/wtools/amid
+          - ../proto/wtools/amid/l3
+          - ../proto/wtools/amid/l3/stager
+          - ../proto/wtools/amid/l3/stager/Stager.s
+          - ../proto/wtools/amid/l3.test
+          - ../proto/wtools/amid/l3.test/stager.test
+          - ../proto/wtools/amid/l3.test/stager.test/Stager.test.s
+          - ../proto/wtools/atop
     submodule:
       wTools:
         path: 'npm:///wTools'
@@ -911,7 +911,7 @@ module:
       entry.proto.no.tests:
         criterion:
           tests: no.tests
-        path: proto/dwtools/amid/l3/stager/Stager.s
+        path: proto/wtools/amid/l3/stager/Stager.s
       entry.proto.only.tests:
         criterion:
           tests: only.tests
@@ -921,13 +921,13 @@ module:
           debug: debug
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/dwtools/amid/l3/stager/Stager.s'
+        path: '{path::out.*=1}/source/wtools/wtools/amid/l3/stager/Stager.s'
       entry.out.raw.debug.release:
         criterion:
           debug: release
           raw: raw
           content: prime
-        path: '{path::out.*=1}/source/dwtools/dwtools/amid/l3/stager/Stager.s'
+        path: '{path::out.*=1}/source/wtools/wtools/amid/l3/stager/Stager.s'
       entry.out.compiled.debug.debug:
         criterion:
           debug: debug

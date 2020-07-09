@@ -4,8 +4,8 @@
   "description" : "Class to organize states of an object.",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
-  "main" : "proto/dwtools/amid/l3/stager/Stager.s",
-  "files" : [ "proto/dwtools/amid/l3", "proto/dwtools/Tools.s", "out" ],
+  "main" : "proto/wtools/amid/l3/stager/Stager.s",
+  "files" : [ "proto/wtools/amid/l3", "proto/wtools/Tools.s", "out" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wStager.git" },
   "bugs" :
