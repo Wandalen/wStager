@@ -1,6 +1,6 @@
 {
   "name" : "wstager",
-  "version" : "0.3.114",
+  "version" : "0.3.115",
   "description" : "Class to organize states of an object.",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
@@ -14,11 +14,11 @@
   },
   "dependencies" :
   {
-    "wTools" : "",
-    "wCopyable" : "",
-    "wBitmask" : "",
-    "wConsequence" : ""
+    "wTools" : "alpha",
+    "wCopyable" : "alpha",
+    "wBitmask" : "alpha",
+    "wConsequence" : "alpha"
   },
-  "devDependencies" : { "wTesting" : "" },
+  "devDependencies" : { "wTesting" : "alpha" },
   "keywords" : [ "wTools" ]
 }
