@@ -333,7 +333,7 @@ function make( test )
     onBegin :           [ begin1 ],
     onEnd :             [ end1 ],
   });
-  test.is( stager instanceof _.Stager );
+  test.true( stager instanceof _.Stager );
 
   /* */
 
@@ -348,7 +348,7 @@ function make( test )
     stageNames :        [ 'stage1' ],
     consequences :      [ object.ready1 ],
   });
-  test.is( stager instanceof _.Stager );
+  test.true( stager instanceof _.Stager );
 
   /* - */
 
@@ -373,7 +373,7 @@ function make( test )
       onBegin :           [ 1 ],
       onEnd :             [ end1 ],
     });
-    test.is( stager instanceof _.Stager );
+    test.true( stager instanceof _.Stager );
   });
 
   test.shouldThrowErrorSync( () =>
@@ -392,7 +392,7 @@ function make( test )
       onBegin :           [ begin1 ],
       onEnd :             [ end1 ],
     });
-    test.is( stager instanceof _.Stager );
+    test.true( stager instanceof _.Stager );
   });
 
   test.shouldThrowErrorSync( () =>
@@ -411,7 +411,7 @@ function make( test )
       onBegin :           [ begin1 ],
       onEnd :             [ 1 ],
     });
-    test.is( stager instanceof _.Stager );
+    test.true( stager instanceof _.Stager );
   });
 
   test.shouldThrowErrorSync( () =>
@@ -431,7 +431,7 @@ function make( test )
       onBegin :           [ begin1 ],
       onEnd :             [ end1 ],
     });
-    test.is( stager instanceof _.Stager );
+    test.true( stager instanceof _.Stager );
   });
 
   test.shouldThrowErrorSync( () =>
@@ -451,7 +451,7 @@ function make( test )
       onBegin :           [ begin1 ],
       onEnd :             [ end1 ],
     });
-    test.is( stager instanceof _.Stager );
+    test.true( stager instanceof _.Stager );
   });
 
   test.shouldThrowErrorSync( () =>
@@ -471,7 +471,7 @@ function make( test )
       onBegin :           [ begin1 ],
       onEnd :             [ end1 ],
     });
-    test.is( stager instanceof _.Stager );
+    test.true( stager instanceof _.Stager );
   });
 
   test.shouldThrowErrorSync( () =>
@@ -491,7 +491,7 @@ function make( test )
       onBegin :           [ begin1 ],
       onEnd :             [ end1 ],
     });
-    test.is( stager instanceof _.Stager );
+    test.true( stager instanceof _.Stager );
   });
 
   /* - */
@@ -4017,8 +4017,8 @@ function stageError2( test )
   {
     runEnd += 1;
 
-    test.is( _.errIs( err ) );
-    test.is( !_.errIsAttended( err ) );
+    test.true( _.errIs( err ) );
+    test.true( !_.errIsAttended( err ) );
     _.errAttend( err );
 
     checkEnd();
