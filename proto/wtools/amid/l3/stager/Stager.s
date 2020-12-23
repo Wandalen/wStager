@@ -1,4 +1,5 @@
-( function _Stager_s_( ) {
+( function _Stager_s_( )
+{
 
 'use strict';
 
@@ -80,7 +81,7 @@ function init( o )
     _.assert( _.objectIs( stager.object ) );
     _.assert
     (
-        stager.stageNames.every( ( name ) => _.numberDefined( stager.object[ name ] ) )
+      stager.stageNames.every( ( name ) => _.numberDefined( stager.object[ name ] ) )
       , 'Object should have all stages defined number'
     );
   }
@@ -119,7 +120,7 @@ function init( o )
       {
         _.assert
         (
-            _.routineIs( stager.object[ element ] )
+          _.routineIs( stager.object[ element ] )
           , () => `Expects a Routine {- ${name} -}, but got ${_.strType( element )}`
         );
         element = stager.object[ element ];
@@ -139,7 +140,7 @@ function init( o )
       {
         _.assert
         (
-            _.consequenceIs( stager.object[ element ] )
+          _.consequenceIs( stager.object[ element ] )
           , () => `Expects a Consequence {- ${name} -}, but got ${_.strType( element )}`
         );
         element = stager.object[ element ];
@@ -456,8 +457,8 @@ function stageState( stage, state )
   let stager = this;
   let stageIndex = stager.stageIndexOf( stage );
   let currenStageIndex = stager.stageIndexOf( stager.currentStage );
-  let begun = currenStageIndex > stageIndex || ( currenStageIndex == stageIndex && stager.currentPhase >= 1 );
-  let ended = currenStageIndex > stageIndex || ( currenStageIndex == stageIndex && stager.currentPhase >= 3 );
+  let begun = currenStageIndex > stageIndex || ( currenStageIndex === stageIndex && stager.currentPhase >= 1 );
+  let ended = currenStageIndex > stageIndex || ( currenStageIndex === stageIndex && stager.currentPhase >= 3 );
 
   _.assert( arguments.length === 1 || arguments.length === 2 );
 
@@ -476,12 +477,12 @@ function stageState( stage, state )
     {
       _.assert
       (
-          !state.begun
+        !state.begun
         , `Was attempt to set on state "begun" of stage ${stager.stageNameOf( stage )}. It should not happen directly.`
       );
       _.assert
       (
-          !state.ended
+        !state.ended
         , `Was attempt to set on state "ended" of stage ${stager.stageNameOf( stage )}. It should not happen directly.`
       );
       if( currenStageIndex > stageIndex )
@@ -497,7 +498,7 @@ function stageState( stage, state )
     _.assert( state.ended === ended );
     _.assert
     (
-        !Object.isFrozen( stager.object )
+      !Object.isFrozen( stager.object )
       , () => 'Object is frozen, cant modify it : ' + _.toStrShort( stager.object )
     );
 
@@ -701,8 +702,16 @@ function tick()
 
   /* */
 
-  function routineRun( onBegin, onPerform, onEnd, stageName, state, prevConsequence, consequence )
+  function routineRun( /* onBegin, onPerform, onEnd, stageName, state, prevConsequence, consequence */ )
   {
+
+    let onBegin = arguments[ 0 ];
+    let onPerform = arguments[ 1 ];
+    let onEnd = arguments[ 2 ];
+    let stageName = arguments[ 3 ];
+    let state = arguments[ 4 ];
+    let prevConsequence = arguments[ 5 ];
+    let consequence = arguments[ 6 ];
 
     // stager.running += 1;
 
