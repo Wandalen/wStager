@@ -1,4 +1,5 @@
-( function _Stager_test_s_( ) {
+( function _Stager_test_s_( )
+{
 
 'use strict';
 
@@ -7,7 +8,7 @@
 
 if( typeof module !== 'undefined' )
 {
-  let _ = require( '../../../wtools/Tools.s' );
+  let _ = require( '../../../Tools.s' );
 
   _.include( 'wTesting' );;
 
@@ -42,7 +43,7 @@ function trivial( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -325,7 +326,7 @@ function make( test )
   object.ready1 = new _.Consequence();
   var stager = _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1' ],
     consequences :      [ object.ready1 ],
@@ -343,7 +344,7 @@ function make( test )
   object.ready1 = new _.Consequence();
   var stager = _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1' ],
     consequences :      [ object.ready1 ],
@@ -365,7 +366,7 @@ function make( test )
     object.ready1 = new _.Consequence();
     var stager = _.Stager
     ({
-      object : object,
+      object,
       verbosity : 5,
       stageNames :        [ 'stage1' ],
       consequences :      [ object.ready1 ],
@@ -384,7 +385,7 @@ function make( test )
     object.ready1 = new _.Consequence();
     var stager = _.Stager
     ({
-      object : object,
+      object,
       verbosity : 5,
       stageNames :        [ 'stage1' ],
       consequences :      [ object.ready1 ],
@@ -403,7 +404,7 @@ function make( test )
     object.ready1 = new _.Consequence();
     var stager = _.Stager
     ({
-      object : object,
+      object,
       verbosity : 5,
       stageNames :        [ 'stage1' ],
       consequences :      [ object.ready1 ],
@@ -423,7 +424,7 @@ function make( test )
     object.ready1 = new _.Consequence();
     var stager = _.Stager
     ({
-      object : object,
+      object,
       verbosity : 5,
       stageNames :        [ 'stage1' ],
       consequences :      [ 1 ],
@@ -443,7 +444,7 @@ function make( test )
     object.ready1 = new _.Consequence();
     var stager = _.Stager
     ({
-      object : object,
+      object,
       verbosity : 5,
       stageNames :        [ 'stage2' ],
       consequences :      [ object.ready1 ],
@@ -463,7 +464,7 @@ function make( test )
     object.ready1 = new _.Consequence();
     var stager = _.Stager
     ({
-      object : object,
+      object,
       verbosity : 5,
       stageNames :        [ 'stage2' ],
       consequences :      [ object.ready1 ],
@@ -483,7 +484,7 @@ function make( test )
     object.ready1 = new _.Consequence();
     var stager = _.Stager
     ({
-      object : object,
+      object,
       verbosity : 5,
       stageNames :        [ 'stage2' ],
       consequences :      [ object.ready1 ],
@@ -547,7 +548,7 @@ function byNames( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -823,7 +824,7 @@ function byVals( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ object.ready1, object.ready2, object.ready3 ],
@@ -1084,7 +1085,7 @@ function stageAccessor( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -1189,7 +1190,7 @@ function stageAccessorBegunEnded( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -1330,7 +1331,7 @@ function stageSkiping1( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -1485,7 +1486,7 @@ function stageSkiping2( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -1640,7 +1641,7 @@ function stageSkiping3( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -1795,7 +1796,7 @@ function stageCancel1( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -2028,7 +2029,7 @@ function stageCancel2( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -2258,7 +2259,7 @@ function stageCancel3( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -2488,7 +2489,7 @@ function stageCancelBut1( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -2718,7 +2719,7 @@ function stageSkiping2Reset1( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -2990,7 +2991,7 @@ function stageSkiping2Reset2( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -3262,7 +3263,7 @@ function stageSkiping2Reset3( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -3534,7 +3535,7 @@ function stageSkiping2Reset23( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
@@ -3819,7 +3820,7 @@ function stageError2( test )
 
   let stager = new _.Stager
   ({
-    object : object,
+    object,
     verbosity : 5,
     stageNames :        [ 'stage1', 'stage2', 'stage3' ],
     consequences :      [ 'ready1', 'ready2', 'ready3' ],
