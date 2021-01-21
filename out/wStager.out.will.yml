@@ -1518,6 +1518,4 @@ module:
       ../.im.will.yml:
         hash: b056c047e36dab95078fa2e3fb3fc52d
         size: 5269
-      wStager.out.will.yml:
-        hash: b72781e163b978abf5663d7dc99f172c
-        size: 38672
+      wStager.out.will.yml: *ref_0
