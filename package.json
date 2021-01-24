@@ -1,24 +1,37 @@
 {
-  "name" : "wstager",
-  "version" : "0.3.143",
-  "description" : "Class to organize states of an object.",
-  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
-  "license" : "MIT",
-  "main" : "proto/wtools/amid/l3/stager/Stager.s",
-  "files" : [ "proto/wtools/amid/l3", "proto/wtools/Tools.s", "out" ],
-  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
-  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wStager.git" },
-  "bugs" :
-  {
-    "url" : "https://github.com/Wandalen/wStager/issues"
+  "name": "wstager",
+  "version": "0.3.144",
+  "description": "Class to organize states of an object.",
+  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "license": "MIT",
+  "main": "proto/wtools/amid/l3/stager/Stager.s",
+  "files": [
+    "proto/wtools/amid/l3",
+    "proto/wtools/Tools.s",
+    "out"
+  ],
+  "scripts": {
+    "test": "wtest .run 'proto/**' rapidity:-3",
+    "docgen": "wdocgen proto"
   },
-  "dependencies" :
-  {
-    "wTools" : "alpha",
-    "wCopyable" : "alpha",
-    "wBitmask" : "alpha",
-    "wConsequence" : "alpha"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Wandalen/wStager.git"
   },
-  "devDependencies" : { "eslint" : "7.1.0", "wTesting" : "alpha" },
-  "keywords" : [ "wTools" ]
+  "bugs": {
+    "url": "https://github.com/Wandalen/wStager/issues"
+  },
+  "dependencies": {
+    "wTools": "alpha",
+    "wCopyable": "alpha",
+    "wBitmask": "alpha",
+    "wConsequence": "alpha"
+  },
+  "devDependencies": {
+    "eslint": "7.1.0",
+    "wTesting": "alpha"
+  },
+  "keywords": [
+    "wTools"
+  ]
 }
