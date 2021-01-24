@@ -8,7 +8,7 @@ Class to organize states of an object.
 git clone https://github.com/Wandalen/wStager
 cd wStager
 npm install
-node sample/Sample.s
+node sample/trivial/Sample.s
 ```
 
 ## To add to your project
