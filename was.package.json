@@ -19,6 +19,6 @@
     "wBitmask" : "",
     "wConsequence" : ""
   },
-  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0", "wstager": "file:." },
+  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0", "wstager" : "file:." },
   "keywords" : [ "wTools" ]
 }
