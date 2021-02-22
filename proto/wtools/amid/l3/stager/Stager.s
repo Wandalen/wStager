@@ -121,7 +121,7 @@ function init( o )
         _.assert
         (
           _.routineIs( stager.object[ element ] )
-          , () => `Expects a Routine {- ${name} -}, but got ${_.strType( element )}`
+          , () => `Expects a Routine {- ${name} -}, but got ${_.entity.strType( element )}`
         );
         element = stager.object[ element ];
       }
@@ -141,7 +141,7 @@ function init( o )
         _.assert
         (
           _.consequenceIs( stager.object[ element ] )
-          , () => `Expects a Consequence {- ${name} -}, but got ${_.strType( element )}`
+          , () => `Expects a Consequence {- ${name} -}, but got ${_.entity.strType( element )}`
         );
         element = stager.object[ element ];
       }
@@ -499,7 +499,7 @@ function stageState( stage, state )
     _.assert
     (
       !Object.isFrozen( stager.object )
-      , () => 'Object is frozen, cant modify it : ' + _.toStrShort( stager.object )
+      , () => 'Object is frozen, cant modify it : ' + _.entity.exportStringShort( stager.object )
     );
 
     let state2 = _.mapExtend( null, state );
