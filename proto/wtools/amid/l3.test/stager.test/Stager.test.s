@@ -1977,7 +1977,6 @@ function stageCancel1( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -2153,7 +2152,6 @@ function stageCancel2( test )
 
     /* */
 
-    debugger;
     test.description = 'reset';
     stager.cancel();
 
@@ -2207,7 +2205,6 @@ function stageCancel2( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -2383,7 +2380,6 @@ function stageCancel3( test )
 
     /* */
 
-    debugger;
     test.description = 'reset';
     stager.cancel();
 
@@ -2437,7 +2433,6 @@ function stageCancel3( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -2613,7 +2608,6 @@ function stageCancelBut1( test )
 
     /* */
 
-    debugger;
     test.description = 'reset';
     stager.cancel({ but : 'stage1' });
 
@@ -2667,7 +2661,6 @@ function stageCancelBut1( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -2843,7 +2836,6 @@ function stageSkiping2Reset1( test )
 
     /* */
 
-    debugger;
     test.description = 'reset';
     stager.stageReset( 'stage1' );
 
@@ -2897,7 +2889,6 @@ function stageSkiping2Reset1( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -2907,7 +2898,6 @@ function stageSkiping2Reset1( test )
   function run2end()
   {
 
-    debugger;
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
@@ -3115,7 +3105,6 @@ function stageSkiping2Reset2( test )
 
     /* */
 
-    debugger;
     test.description = 'reset';
     stager.stageReset( 'stage2' );
 
@@ -3169,7 +3158,6 @@ function stageSkiping2Reset2( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -3179,7 +3167,6 @@ function stageSkiping2Reset2( test )
   function run2end()
   {
 
-    debugger;
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
@@ -3387,7 +3374,6 @@ function stageSkiping2Reset3( test )
 
     /* */
 
-    debugger;
     test.description = 'reset';
     stager.stageReset( 'stage3' );
 
@@ -3441,7 +3427,6 @@ function stageSkiping2Reset3( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -3451,7 +3436,6 @@ function stageSkiping2Reset3( test )
   function run2end()
   {
 
-    debugger;
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
@@ -3659,7 +3643,6 @@ function stageSkiping2Reset23( test )
 
     /* */
 
-    debugger;
     test.description = 'reset';
     stager.stageReset( 'stage2' );
     stager.stageReset( 'stage3' );
@@ -3714,7 +3697,6 @@ function stageSkiping2Reset23( test )
     var got = stager.stageState( 'stage3' );
     test.identical( got, exp );
 
-    debugger;
     stager.tick();
 
     runEnd += 1;
@@ -3724,7 +3706,6 @@ function stageSkiping2Reset23( test )
   function run2end()
   {
 
-    debugger;
     test.case = 'run2end';
     test.identical( runEnd, 2 );
 
