@@ -525,7 +525,6 @@ function stageStateSpecific_functor( stateName )
 
     if( stage === undefined )
     {
-      debugger;
       let result = [];
       for( let stageIndex = 0 ; stageIndex < stager.stageNames.length ; stageIndex++ )
       {
@@ -817,7 +816,6 @@ function tick()
 
       if( err )
       {
-        // debugger;
         statusChange( stageName, 'after2', 'error' );
         let state2 = stager.stageState( stageName );
         state2.performed = 0;
