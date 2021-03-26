@@ -39,9 +39,9 @@ Performed - the processing of the stage was performed, false if it was skipped.
  * @memberof module:Tools/mid/Stager
 */
 
-let _ = _global_.wTools;
-let Parent = null;
-let Self = wStager;
+const _ = _global_.wTools;
+const Parent = null;
+const Self = wStager;
 function wStager( o )
 {
   return _.workpiece.construct( Self, this, arguments );
@@ -499,7 +499,7 @@ function stageState( stage, state )
     _.assert
     (
       !Object.isFrozen( stager.object )
-      , () => 'Object is frozen, cant modify it : ' + _.entity.exportStringShort( stager.object )
+      , () => 'Object is frozen, cant modify it : ' + _.entity.exportStringShallow( stager.object )
     );
 
     let state2 = _.mapExtend( null, state );

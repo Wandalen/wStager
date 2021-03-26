@@ -16,8 +16,8 @@ if( typeof module !== 'undefined' )
 
 }
 
-let _global = _global_;
-let _ = _global_.wTools;
+const _global = _global_;
+const _ = _global_.wTools;
 
 // --
 // tests
@@ -4050,7 +4050,7 @@ function stageError2( test )
 // define class
 // --
 
-let Self =
+const Proto =
 {
 
   name : 'Tools.amid.Stager',
@@ -4103,7 +4103,7 @@ let Self =
 // export
 // --
 
-Self = wTestSuite( Self );
+const Self = wTestSuite( Proto );
 if( typeof module !== 'undefined' && !module.parent )
 wTester.test( Self.name );
 
