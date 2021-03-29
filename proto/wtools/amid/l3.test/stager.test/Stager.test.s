@@ -4000,7 +4000,7 @@ function stageError2( test )
     runEnd += 1;
 
     test.true( _.errIs( err ) );
-    test.true( !_.errIsAttended( err ) );
+    test.true( !_.error.isAttended( err ) );
     _.errAttend( err );
 
     checkEnd();
