@@ -5,7 +5,7 @@
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
   "main" : "proto/wtools/amid/l3/stager/Stager.s",
-  "files" : [ "proto/wtools/amid/l3", "proto/wtools/Tools.s", "out" ],
+  "files" : [ "proto/wtools/amid/l3", "proto/wtools/Tools.s", "out", "proto/node_modules" ],
   "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
   "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wStager.git" },
   "bugs" :
@@ -19,6 +19,6 @@
     "wBitmask" : "",
     "wConsequence" : ""
   },
-  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0", "wstager" : "file:." },
+  "devDependencies" : { "wTesting" : "", "eslint" : "7.1.0" },
   "keywords" : [ "wTools" ]
 }
