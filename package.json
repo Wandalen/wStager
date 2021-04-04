@@ -1,38 +1,24 @@
 {
-  "name": "wstager",
-  "version": "0.3.167",
-  "description": "Class to organize states of an object.",
-  "author": "Kostiantyn Wandalen <wanalen@01.school>",
-  "license": "MIT",
-  "main": "proto/wtools/amid/l3/stager/Stager.s",
-  "files": [
-    "proto/wtools/amid/l3",
-    "proto/wtools/Tools.s",
-    "out",
-    "proto/node_modules"
-  ],
-  "scripts": {
-    "test": "wtest .run 'proto/**' rapidity:-3",
-    "docgen": "wdocgen proto"
+  "name" : "wstager",
+  "version" : "0.3.168",
+  "description" : "Class to organize states of an object.",
+  "author" : "Kostiantyn Wandalen <wanalen@01.school>",
+  "license" : "MIT",
+  "main" : "proto/node_modules/wstager",
+  "files" : [ "proto/wtools/amid/l3", "proto/wtools/Tools.s", "out", "proto/node_modules" ],
+  "scripts" : { "test" : "wtest .run 'proto/**' rapidity:-3", "docgen" : "wdocgen proto" },
+  "repository" : { "type" : "git", "url" : "https://github.com/Wandalen/wStager.git" },
+  "bugs" :
+  {
+    "url" : "https://github.com/Wandalen/wStager/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Wandalen/wStager.git"
+  "dependencies" :
+  {
+    "wTools" : "delta",
+    "wCopyable" : "delta",
+    "wBitmask" : "delta",
+    "wConsequence" : "delta"
   },
-  "bugs": {
-    "url": "https://github.com/Wandalen/wStager/issues"
-  },
-  "dependencies": {
-    "wTools": "delta",
-    "wCopyable": "delta",
-    "wBitmask": "delta",
-    "wConsequence": "delta"
-  },
-  "devDependencies": {
-    "eslint": "7.1.0",
-    "wTesting": "delta"
-  },
-  "keywords": [
-    "wTools"
-  ]
+  "devDependencies" : { "eslint" : "7.1.0", "wTesting" : "delta" },
+  "keywords" : [ "wTools" ]
 }
