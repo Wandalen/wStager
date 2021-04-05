@@ -86,8 +86,8 @@ path:
       raw: compiled
       content: prime
   npm.proto.entry:
-    - /pro/module/wStager/proto/wtools/amid/l3/stager/Stager.s
-    - /pro/module/wStager/proto/node_modules/wstager
+    - proto/wtools/amid/l3/stager/Stager.s
+    - proto/node_modules/wstager
 reflector:
   reflect.proto:
     inherit: predefined.*
