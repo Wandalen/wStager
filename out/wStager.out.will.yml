@@ -2,15 +2,12 @@ format: outwillfile-2.0
 root:
   - wStager.out
 consistency:
-  wStager.out.will.yml: &ref_0
-    hash: 20dac12099cb13ec5448023c07b61ecb
-    size: 39037
-  ../.ex.will.yml: &ref_1
+  ../.ex.will.yml: &ref_0
     hash: 988dbc6aad7914a3273e10a965ebd181
     size: 1678
-  ../.im.will.yml: &ref_2
-    hash: 4b69ed321ee2c46130b47b0cfca4b2ff
-    size: 5200
+  ../.im.will.yml: &ref_1
+    hash: 9558d2789dd2158e251100428605f39f
+    size: 5160
 module:
   wStager.out:
     about:
@@ -19,18 +16,18 @@ module:
       description: Class to organize states of an object.
       enabled: 1
       version: 0.4.0
-      interpreters:
+      interpreters: &ref_2
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords:
+      keywords: &ref_3
         - wTools
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
+      contributors: &ref_4
         - Kostiantyn Wandalen <wanalen@01.school>
       npm.name: wstager
-      npm.scripts:
+      npm.scripts: &ref_5
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -715,24 +712,6 @@ module:
           content: prime
         inherit:
           - files.transpile
-      exported.proto.export:
-        opts:
-          filePath: 'reflector::exported.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
-      exported.files.proto.export:
-        opts:
-          filePath: 'reflector::exported.files.proto.export'
-        criterion:
-          generated: 1
-          content: proto
-          export: 1
-        inherit:
-          - files.reflect
     build:
       proto.export:
         steps:
@@ -821,9 +800,8 @@ module:
           content: proto
           export: 1
     consistency:
-      wStager.out.will.yml: *ref_0
-      ../.ex.will.yml: *ref_1
-      ../.im.will.yml: *ref_2
+      ../.ex.will.yml: *ref_0
+      ../.im.will.yml: *ref_1
   ../:
     about:
       name: wStager
@@ -831,20 +809,13 @@ module:
       description: Class to organize states of an object.
       enabled: 1
       version: 0.4.0
-      interpreters:
-        - njs >= 10.0.0
-        - chrome >= 60.0.0
-        - firefox >= 60.0.0
-      keywords:
-        - wTools
+      interpreters: *ref_2
+      keywords: *ref_3
       license: MIT
       author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors:
-        - Kostiantyn Wandalen <wanalen@01.school>
+      contributors: *ref_4
       npm.name: wstager
-      npm.scripts:
-        test: wtest .run proto/**
-        docgen: wdocgen .build proto
+      npm.scripts: *ref_5
     path:
       module.willfiles:
         criterion:
@@ -1528,8 +1499,5 @@ module:
         hash: 988dbc6aad7914a3273e10a965ebd181
         size: 1678
       ../.im.will.yml:
-        hash: 4b69ed321ee2c46130b47b0cfca4b2ff
-        size: 5200
-      wStager.out.will.yml:
-        hash: 20dac12099cb13ec5448023c07b61ecb
-        size: 39037
+        hash: 9558d2789dd2158e251100428605f39f
+        size: 5160
