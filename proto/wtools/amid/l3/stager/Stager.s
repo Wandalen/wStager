@@ -13,7 +13,7 @@
 if( typeof module !== 'undefined' )
 {
 
-  let _ = require( '../../../../node_modules/Tools' );
+  const _ = require( '../../../../node_modules/Tools' );
 
   _.include( 'wCopyable' );
   _.include( 'wBitmask' );
@@ -291,9 +291,8 @@ function stageError( stageName, error )
 
   let state2 = stager.stageState( stageName );
   state2.performed = 0;
-  state2.errored = true;
-  // state2.begun = false;
-  // state2.ended = true;
+  // state2.errored = true; /* yyy */
+  state2.errored = error;
   stager.stageState( stageName, state2 );
 
   consequence.take( error, undefined );
@@ -585,16 +584,29 @@ function isValid()
 
 //
 
+function errorGet()
+{
+  let stager = this;
+
+  for( let stageIndex = 0 ; stageIndex < stager.stageNames.length ; stageIndex++ )
+  {
+    let state = stager.stageState( stageIndex );
+    if( state.errored )
+    return state.errored;
+  }
+
+  return null;
+}
+
+//
+
 function tick()
 {
   let stager = this;
   let currenStageIndex = stager.stageIndexOf( stager.currentStage );
   let error;
 
-  // if( stager.isFinited() )
-  // debugger;
-  if( Object.isFrozen( stager.object ) ) // xxx yyy
-  // if( stager.isFinited() )
+  if( Object.isFrozen( stager.object ) ) /* xxx yyy */
   return stager.consequences[ stager.consequences.length - 1 ];
 
   /* if begin a stage then return */
@@ -621,7 +633,6 @@ function tick()
     stager.currentPhase = 0;
   }
 
-  // for( let stageIndex = 0 ; stageIndex < stager.stageNames.length ; stageIndex++ )
   for( let stageIndex = currenStageIndex ; stageIndex < stager.stageNames.length ; stageIndex++ )
   {
     let stageName = stager.stageNames[ stageIndex ];
@@ -654,13 +665,8 @@ function tick()
       if( !onPerform )
       onPerform = function() { return null }
 
-      // if( !onPerform || state.skipping || state.performed )
-      // onPerform = function() { return null }
-
       _.assert( stager.currentPhase === 0 );
       stager.currentPhase = 1;
-      // state.begun = true;
-      // stager.stageState( stageIndex, state );
 
       let prevConsequence = stager.consequences[ stageIndex-1 ];
       if( !prevConsequence )
@@ -680,9 +686,6 @@ function tick()
     stager.running -= 1;
     if( stager.running === 0 )
     {
-      // if( stager.verbosity )
-      // logger.log( 'stager.running end' );
-      // statusChange( stageName, 'running', 'end' );
       statusChange( `${stager.currentStage}.ticking`, 'end', '' );
     }
     return stager.consequences[ stager.consequences.length - 1 ];
@@ -703,7 +706,6 @@ function tick()
 
   function routineRun( /* onBegin, onPerform, onEnd, stageName, state, prevConsequence, consequence */ )
   {
-
     let onBegin = arguments[ 0 ];
     let onPerform = arguments[ 1 ];
     let onEnd = arguments[ 2 ];
@@ -711,8 +713,6 @@ function tick()
     let state = arguments[ 4 ];
     let prevConsequence = arguments[ 5 ];
     let consequence = arguments[ 6 ];
-
-    // stager.running += 1;
 
     statusChange( stageName, 'before', '' );
 
@@ -789,8 +789,6 @@ function tick()
       _.assert( stager.currentPhase === 1 );
       stager.currentPhase = 2;
 
-      // consequence.take( err, arg ); // yyy
-
       return arg || null;
     });
 
@@ -830,14 +828,13 @@ function tick()
 
       _.assert( stager.currentPhase === 2 );
       stager.currentPhase = 3;
-      // stager.running -= 1;
 
       end();
 
       if( error )
-      consequence.error( error ); // yyy
+      consequence.error( error );
       else
-      consequence.take( err, arg ); // yyy
+      consequence.take( err, arg );
       stager._ready.take( arg || null );
       stager.tick();
 
@@ -932,6 +929,7 @@ let Proto =
   stateFromMap,
 
   isValid,
+  errorGet,
   tick,
 
   exportString,

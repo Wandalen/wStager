@@ -8,12 +8,11 @@
 
 if( typeof module !== 'undefined' )
 {
-  let _ = require( '../../../Tools.s' );
+  const _ = require( 'Tools' );
 
   _.include( 'wTesting' );;
 
-  require( '../../l3/stager/Stager.s' );
-
+  require( '../l3/stager/Stager.s' );
 }
 
 const _global = _global_;
