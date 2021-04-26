@@ -169,7 +169,7 @@ function cancel( o )
 
   _.assert( arguments.length === 0 || arguments.length === 1 );
 
-  o = _.routineOptions( cancel, arguments );
+  o = _.routine.options_( cancel, arguments );
   if( o.but !== null )
   o.but = _.arrayAs( o.but );
   _.assert( o.but === null || _.all( o.but, ( s ) => _.longHas( stager.stageNames, s ) ) );
@@ -501,7 +501,7 @@ function stageState( stage, state )
       , () => 'Object is frozen, cant modify it : ' + _.entity.exportStringShallow( stager.object )
     );
 
-    let state2 = _.mapExtend( null, state );
+    let state2 = _.props.extend( null, state );
     delete state2.begun;
     delete state2.ended;
     stager.object[ stager.stageNames[ stageIndex ] ] = stager.stateFromMap( state2 );
