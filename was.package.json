@@ -1,6 +1,6 @@
 {
   "name" : "wstager",
-  "version" : "0.3.174",
+  "version" : "0.3.175",
   "description" : "Class to organize states of an object.",
   "author" : "Kostiantyn Wandalen <wanalen@01.school>",
   "license" : "MIT",
