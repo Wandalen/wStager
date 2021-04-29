@@ -78,7 +78,7 @@ function init( o )
     _.assert( stager.stageNames.length === stager.consequences.length );
     _.assert( stager.stageNames.length === stager.onPerform.length );
     _.assert( _.strsAreAll( stager.stageNames ) );
-    _.assert( _.objectIs( stager.object ) );
+    _.assert( _.object.isBasic( stager.object ) );
     _.assert
     (
       stager.stageNames.every( ( name ) => _.numberDefined( stager.object[ name ] ) )
