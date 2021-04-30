@@ -498,7 +498,7 @@ function stageState( stage, state )
     _.assert
     (
       !Object.isFrozen( stager.object )
-      , () => 'Object is frozen, cant modify it : ' + _.entity.exportStringShallow( stager.object )
+      , () => 'Object is frozen, cant modify it : ' + _.entity.exportStringDiagnosticShallow( stager.object )
     );
 
     let state2 = _.props.extend( null, state );
