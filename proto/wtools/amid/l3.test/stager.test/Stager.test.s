@@ -9,10 +9,8 @@
 if( typeof module !== 'undefined' )
 {
   const _ = require( 'Tools' );
-
-  _.include( 'wTesting' );;
-
-  require( '../l3/stager/Stager.s' );
+  _.include( 'wTesting' );
+  require( '../../l3/stager/Stager.s' );
 }
 
 const _global = _global_;
