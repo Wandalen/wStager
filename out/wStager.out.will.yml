@@ -2,12 +2,9 @@ format: outwillfile-2.0
 root:
   - wStager.out
 consistency:
-  ../.ex.will.yml: &ref_0
-    hash: 988dbc6aad7914a3273e10a965ebd181
-    size: 1678
-  ../.im.will.yml: &ref_1
-    hash: 9558d2789dd2158e251100428605f39f
-    size: 5160
+  ../will.yml: &ref_0
+    hash: 5b5426c7de9efbe7749907f46d7634b2
+    size: 6591
 module:
   wStager.out:
     about:
@@ -16,18 +13,18 @@ module:
       description: Class to organize states of an object.
       enabled: 1
       version: 0.4.0
-      interpreters: &ref_2
+      license: MIT
+      npm.name: wstager
+      author: Kostiantyn Wandalen <wanalen@01.school>
+      keywords: &ref_1
+        - wTools
+      contributors: &ref_2
+        - Kostiantyn Wandalen <wanalen@01.school>
+      interpreters: &ref_3
         - njs >= 10.0.0
         - chrome >= 60.0.0
         - firefox >= 60.0.0
-      keywords: &ref_3
-        - wTools
-      license: MIT
-      author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: &ref_4
-        - Kostiantyn Wandalen <wanalen@01.school>
-      npm.name: wstager
-      npm.scripts: &ref_5
+      npm.scripts: &ref_4
         test: wtest .run proto/**
         docgen: wdocgen .build proto
     path:
@@ -42,15 +39,11 @@ module:
       module.original.willfiles:
         criterion:
           predefined: 1
-        path:
-          - ../.ex.will.yml
-          - ../.im.will.yml
+        path: ../will.yml
       module.peer.willfiles:
         criterion:
           predefined: 1
-        path:
-          - ../.ex.will.yml
-          - ../.im.will.yml
+        path: ../will.yml
       module.peer.in:
         criterion:
           predefined: 1
@@ -800,8 +793,7 @@ module:
           content: proto
           export: 1
     consistency:
-      ../.ex.will.yml: *ref_0
-      ../.im.will.yml: *ref_1
+      ../will.yml: *ref_0
   ../:
     about:
       name: wStager
@@ -809,26 +801,22 @@ module:
       description: Class to organize states of an object.
       enabled: 1
       version: 0.4.0
-      interpreters: *ref_2
-      keywords: *ref_3
       license: MIT
-      author: Kostiantyn Wandalen <wanalen@01.school>
-      contributors: *ref_4
       npm.name: wstager
-      npm.scripts: *ref_5
+      author: Kostiantyn Wandalen <wanalen@01.school>
+      keywords: *ref_1
+      contributors: *ref_2
+      interpreters: *ref_3
+      npm.scripts: *ref_4
     path:
       module.willfiles:
         criterion:
           predefined: 1
-        path:
-          - .ex.will.yml
-          - .im.will.yml
+        path: will.yml
       module.original.willfiles:
         criterion:
           predefined: 1
-        path:
-          - .ex.will.yml
-          - .im.will.yml
+        path: will.yml
       module.peer.willfiles:
         criterion:
           predefined: 1
@@ -1495,9 +1483,6 @@ module:
           - 'build::release'
           - 'build::npm'
     consistency:
-      ../.ex.will.yml:
-        hash: 988dbc6aad7914a3273e10a965ebd181
-        size: 1678
-      ../.im.will.yml:
-        hash: 9558d2789dd2158e251100428605f39f
-        size: 5160
+      ../will.yml:
+        hash: 5b5426c7de9efbe7749907f46d7634b2
+        size: 6591
