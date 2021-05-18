@@ -171,7 +171,7 @@ function cancel( o )
 
   o = _.routine.options_( cancel, arguments );
   if( o.but !== null )
-  o.but = _.arrayAs( o.but );
+  o.but = _.array.as( o.but );
   _.assert( o.but === null || _.all( o.but, ( s ) => _.longHas( stager.stageNames, s ) ) );
 
   for( let s = stager.stageNames.length-1 ; s >= 0 ; s-- )
