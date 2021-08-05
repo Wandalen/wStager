@@ -1,6 +1,6 @@
 {
   "name": "wstager",
-  "version": "0.3.198",
+  "version": "0.3.199",
   "description": "Class to organize states of an object.",
   "author": "Kostiantyn Wandalen <wanalen@01.school>",
   "license": "MIT",
@@ -24,13 +24,13 @@
     "url": "https://github.com/Wandalen/wStager/issues"
   },
   "dependencies": {
-    "wTools": "latest",
-    "wCopyable": "latest",
-    "wConsequence": "latest",
-    "wBitmask": "latest"
+    "wTools": "delta",
+    "wCopyable": "delta",
+    "wConsequence": "delta",
+    "wBitmask": "delta"
   },
   "devDependencies": {
-    "wTesting": "latest",
+    "wTesting": "delta",
     "eslint": "7.1.0"
   },
   "keywords": [
