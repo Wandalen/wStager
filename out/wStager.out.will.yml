@@ -3,8 +3,8 @@ root:
   - wStager.out
 consistency:
   ../will.yml: &ref_0
-    hash: 5b5426c7de9efbe7749907f46d7634b2
-    size: 6591
+    hash: 944b554187f3f0007736fc66cdf76e4e
+    size: 6450
 module:
   wStager.out:
     about:
@@ -379,9 +379,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -717,12 +714,6 @@ module:
           - 'step::doc.export'
         criterion:
           content: doc
-          export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
           export: 1
       export:
         steps:
@@ -1082,9 +1073,6 @@ module:
           content: npm
         inherit:
           - module.export
-      npm.publish:
-        opts:
-          shell: npm publish
       npm.generate.debug.raw:
         opts:
           entryPath: 'path::entry.out.*=1'
@@ -1421,12 +1409,6 @@ module:
         criterion:
           content: doc
           export: 1
-      npm.export:
-        steps:
-          - 'step::npm.publish'
-        criterion:
-          content: npm
-          export: 1
       export:
         steps:
           - 'build::proto.export'
@@ -1484,5 +1466,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 5b5426c7de9efbe7749907f46d7634b2
-        size: 6591
+        hash: 944b554187f3f0007736fc66cdf76e4e
+        size: 6450
