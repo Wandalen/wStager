@@ -2,7 +2,7 @@
   "name": "wstager",
   "version": "0.3.215",
   "description": "Class to organize states of an object.",
-  "author": "Kostiantyn Wandalen <wanalen@01.school>",
+  "author": "Kostiantyn Wandalen <wandalen@obox.systems>",
   "license": "MIT",
   "main": "proto/node_modules/wstager",
   "files": [
