@@ -3,8 +3,8 @@ root:
   - wStager.out
 consistency:
   ../will.yml: &ref_0
-    hash: 944b554187f3f0007736fc66cdf76e4e
-    size: 6450
+    hash: a57292fcc6d1dd400326acbb53038693
+    size: 6458
 module:
   wStager.out:
     about:
@@ -1466,5 +1466,5 @@ module:
           - 'build::npm'
     consistency:
       ../will.yml:
-        hash: 944b554187f3f0007736fc66cdf76e4e
-        size: 6450
+        hash: a57292fcc6d1dd400326acbb53038693
+        size: 6458
